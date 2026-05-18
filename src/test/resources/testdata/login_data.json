@@ -1,0 +1,20 @@
+[
+  {
+    "username": "standard_user",
+    "password": "secret_sauce",
+    "expectSuccess": true,
+    "expectedErrorContains": ""
+  },
+  {
+    "username": "locked_out_user",
+    "password": "secret_sauce",
+    "expectSuccess": false,
+    "expectedErrorContains": "locked out"
+  },
+  {
+    "username": "standard_user",
+    "password": "wrong_password",
+    "expectSuccess": false,
+    "expectedErrorContains": "Username and password do not match"
+  }
+]

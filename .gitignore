@@ -1,0 +1,17 @@
+target/
+test-output/
+reports/
+screenshots/
+logs/
+allure-results/
+allure-report/
+.idea/
+.vscode/
+*.iml
+.classpath
+.project
+.settings/
+.factorypath
+bin/
+*.log
+.claude/settings.local.json

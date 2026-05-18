@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Selenium Parallel Suite" parallel="methods" thread-count="3" verbose="1">
+
+    <test name="Parallel Tests">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.selenium.tests.LoginTests"/>
+            <class name="com.selenium.tests.ProductsTests"/>
+            <class name="com.selenium.tests.LoginDataDrivenTests"/>
+            <class name="com.selenium.tests.LoginExcelTests"/>
+        </classes>
+    </test>
+</suite>
