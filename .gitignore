@@ -1,20 +1,84 @@
+# Maven / Java build
 target/
+out/
+bin/
+*.class
+*.iml
+*.ipr
+*.iws
+dependency-reduced-pom.xml
+hs_err_pid*.log
+replay_pid*.log
+
+# Test outputs
 test-output/
 reports/
 screenshots/
-logs/
 allure-results/
 allure-report/
+logs/
+*.log
+playwright-report/
+test-results/
+.playwright-mcp/
+
+# IDE
 .idea/
 .vscode/
-*.iml
 .classpath
 .project
 .settings/
 .factorypath
-bin/
-*.log
+.github/java-upgrade/
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor backups
+*.swp
+*.swo
+*~
+*.bak
+*.orig
+*.rej
+
+# Office lock files
+~$*.xlsx
+~$*.docx
+~$*.pptx
+
+# Local config / secrets (NEVER commit)
+*.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+secrets.properties
+credentials.local.*
 .claude/settings.local.json
 
-# IDE / extension artifacts
-.github/java-upgrade/
+# Node (phòng tương lai)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# AI scratch / debug artifacts (per CLAUDE.md cleanup rule)
+*_debug.txt
+*_output.txt
+debug_output.txt
+*.tmp
+*.temp
+page_snapshot.md
+snapshot_*.md
+dom_dump.txt
+html_dump.html
+console_log.txt
+network_requests.txt
+scratch_*.py
+scratch_*.js
+scratch_*.ts
+scratch_*.java
