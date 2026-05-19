@@ -294,9 +294,7 @@ The agent MUST also follow the detailed rules defined in `.agent/rules/`:
 
 - [automation_rules.md](.agent/rules/automation_rules.md) — General automation best practices
 - [locator_strategy.md](.agent/rules/locator_strategy.md) — Detailed locator selection rules
-- [playwright_rules.md](.agent/rules/playwright_rules.md) — Playwright-specific rules
 - [selenium_rules.md](.agent/rules/selenium_rules.md) — Selenium-specific rules
-- [appium_rules.md](.agent/rules/appium_rules.md) — Appium mobile automation rules
 
 ---
 
