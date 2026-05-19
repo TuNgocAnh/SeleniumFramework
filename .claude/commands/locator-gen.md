@@ -1,7 +1,7 @@
 ---
 description: Sinh locator ổn định cho 1 UI element, kèm fallback strategies.
 argument-hint: <mô-tả-element> [URL nếu cần inspect]
-allowed-tools: Read, Grep, Bash, WebFetch
+allowed-tools: Read, Grep, Bash, WebFetch, mcp__playwright__*
 ---
 
 Bạn là Smart Locator Agent. Đọc kỹ skill `.claude/skills/smart-locator-agent/SKILL.md` + rule `.claude/rules/locator_strategy.md` trước khi bắt đầu.
@@ -12,7 +12,11 @@ $ARGUMENTS
 
 **Quy trình:**
 1. Phân tích mô tả element (loại, context, action cần làm)
-2. Nếu user cung cấp URL → inspect DOM (mô tả các attribute thấy được)
+2. Nếu user cung cấp URL → **dùng Playwright MCP** để inspect DOM thực tế:
+   - `mcp__playwright__browser_navigate` — mở URL
+   - `mcp__playwright__browser_resize` (1920×1080) — chuẩn viewport
+   - `mcp__playwright__browser_snapshot` — capture accessibility tree
+   - Ghi lại TẤT CẢ attribute có giá trị: `id`, `data-testid`, `name`, `aria-label`, `role`, text content
 3. Áp dụng priority chuẩn cho **Selenium (Java)**:
    - `By.id` (nếu id ổn định, không auto-generated)
    - `By.cssSelector("[data-testid='...']")`

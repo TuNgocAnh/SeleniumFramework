@@ -194,7 +194,29 @@ Assertions.assertAll(); // gọi cuối test để gom kết quả
 
 ---
 
-## 9. CI (GitHub Actions)
+## 9. MCP — Inspect DOM thật từ Claude Code
+
+Repo đã config sẵn **Playwright MCP server** trong `.mcp.json`. Khi dùng Claude Code, các slash command như `/locator-gen` có thể mở browser thật, capture DOM accessibility tree, click/type — không còn đoán locator nữa.
+
+**Cài 1 lần:**
+
+```powershell
+npx playwright install chromium
+```
+
+Sau đó reload Claude Code (`Ctrl+Shift+P` → "Developer: Reload Window"). Các tool `mcp__playwright__browser_*` sẽ available cho agent.
+
+**Test nhanh:**
+
+```
+/locator-gen nút "Add to cart" trên https://www.saucedemo.com
+```
+
+Agent sẽ tự navigate, inspect DOM thực tế, trả về locator + healable fallback chính xác.
+
+---
+
+## 10. CI (GitHub Actions)
 
 Workflow: `.github/workflows/ci.yml` — tự chạy headless khi `push` / `pull_request`, upload Allure + Extent + log làm artifact.
 
@@ -202,7 +224,7 @@ Workflow: `.github/workflows/ci.yml` — tự chạy headless khi `push` / `pull
 
 ---
 
-## 10. Mẹo nhanh khi viết test mới
+## 11. Mẹo nhanh khi viết test mới
 
 1. Tạo Page Object trong `src/main/java/com/selenium/framework/pages/`, kế thừa `BasePage`.
 2. Tạo test class trong `src/test/java/com/selenium/tests/`, kế thừa `BaseTest`.

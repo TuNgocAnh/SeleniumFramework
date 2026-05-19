@@ -194,7 +194,29 @@ Assertions.assertAll(); // call at end of test to aggregate results
 
 ---
 
-## 9. CI (GitHub Actions)
+## 9. MCP — Inspect real DOM from Claude Code
+
+The repo ships with a **Playwright MCP server** preconfigured in `.mcp.json`. Slash commands like `/locator-gen` can drive a real browser, capture the DOM accessibility tree, click/type — no more guessing locators.
+
+**One-time setup:**
+
+```powershell
+npx playwright install chromium
+```
+
+Then reload Claude Code (`Ctrl+Shift+P` → "Developer: Reload Window"). The `mcp__playwright__browser_*` tools become available to the agent.
+
+**Quick test:**
+
+```
+/locator-gen "Add to cart" button on https://www.saucedemo.com
+```
+
+The agent will navigate, inspect the real DOM, and return a locator + healable fallbacks based on actual attributes.
+
+---
+
+## 10. CI (GitHub Actions)
 
 Workflow: `.github/workflows/ci.yml` — runs headless on `push` / `pull_request`, uploads Allure + Extent + logs as artifacts.
 
@@ -202,7 +224,7 @@ Workflow: `.github/workflows/ci.yml` — runs headless on `push` / `pull_request
 
 ---
 
-## 10. Tips for Writing New Tests
+## 11. Tips for Writing New Tests
 
 1. Create a Page Object in `src/main/java/com/selenium/framework/pages/`, extending `BasePage`.
 2. Create a test class in `src/test/java/com/selenium/tests/`, extending `BaseTest`.
