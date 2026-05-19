@@ -55,7 +55,7 @@ Typical prompts include:
 
 ## Workflow Routing
 
-When the user request matches a specific task, select the appropriate workflow file from `.agent/workflows/`.
+When the user request matches a specific task, select the appropriate workflow file from `.claude/workflows/`.
 
 ### Generate test cases from requirements
 
@@ -284,17 +284,17 @@ Avoid fragile locators such as auto-generated class names or positional xpaths.
 
 Avoid fragile selectors such as dynamic class names.
 
-> **Note:** For detailed locator rules, refer to `.agent/rules/locator_strategy.md`.
+> **Note:** For detailed locator rules, refer to `.claude/rules/locator_strategy.md`.
 
 ---
 
 ## Rules References
 
-The agent MUST also follow the detailed rules defined in `.agent/rules/`:
+The agent MUST also follow the detailed rules defined in `.claude/rules/`:
 
-- [automation_rules.md](.agent/rules/automation_rules.md) — General automation best practices
-- [locator_strategy.md](.agent/rules/locator_strategy.md) — Detailed locator selection rules
-- [selenium_rules.md](.agent/rules/selenium_rules.md) — Selenium-specific rules
+- [automation_rules.md](.claude/rules/automation_rules.md) — General automation best practices
+- [locator_strategy.md](.claude/rules/locator_strategy.md) — Detailed locator selection rules
+- [selenium_rules.md](.claude/rules/selenium_rules.md) — Selenium-specific rules
 
 ---
 

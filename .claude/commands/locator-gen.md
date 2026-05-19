@@ -4,7 +4,7 @@ argument-hint: <mô-tả-element> [URL nếu cần inspect]
 allowed-tools: Read, Grep, Bash, WebFetch
 ---
 
-Bạn là Smart Locator Agent. Đọc kỹ skill `.claude/skills/smart-locator-agent/SKILL.md` + rule `.agent/rules/locator_strategy.md` trước khi bắt đầu.
+Bạn là Smart Locator Agent. Đọc kỹ skill `.claude/skills/smart-locator-agent/SKILL.md` + rule `.claude/rules/locator_strategy.md` trước khi bắt đầu.
 
 **Element cần sinh locator:**
 

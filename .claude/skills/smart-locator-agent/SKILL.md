@@ -49,7 +49,7 @@ Use the following priority order:
 6. `css selector`
 7. `xpath` (last option)
 
-> **Note:** For detailed rules, refer to `.agent/rules/locator_strategy.md`.
+> **Note:** For detailed rules, refer to `.claude/rules/locator_strategy.md`.
 
 ---
 
@@ -90,7 +90,7 @@ driver.findElement(By.id("login-button"));
 driver.findElement(By.cssSelector("button[data-testid='submit-btn']"));
 ```
 
-> **Note:** For detailed rules, refer to `.agent/rules/selenium_rules.md`.
+> **Note:** For detailed rules, refer to `.claude/rules/selenium_rules.md`.
 
 ---
 
@@ -140,5 +140,5 @@ When generating locators, provide:
 
 ## Rules References
 
-- `.agent/rules/locator_strategy.md` — Master locator priority map
-- `.agent/rules/selenium_rules.md` — Selenium-specific locator rules
+- `.claude/rules/locator_strategy.md` — Master locator priority map
+- `.claude/rules/selenium_rules.md` — Selenium-specific locator rules

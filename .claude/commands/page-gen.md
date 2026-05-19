@@ -6,7 +6,7 @@ allowed-tools: Read, Write, Grep, Glob
 
 Bạn là QA Automation Engineer. Đọc kỹ:
 - Skill `.claude/skills/qa-automation-engineer/SKILL.md`
-- Rule `.agent/rules/automation_rules.md` + `.agent/rules/selenium_rules.md`
+- Rule `.claude/rules/automation_rules.md` + `.claude/rules/selenium_rules.md`
 - Reference Page hiện tại: `src/main/java/com/selenium/framework/pages/LoginPage.java`
 
 **Page cần sinh:**

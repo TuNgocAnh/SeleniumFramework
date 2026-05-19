@@ -289,6 +289,6 @@ project-root/
 
 Agent PHẢI tuân thủ các rules chi tiết:
 
-- `.agent/rules/automation_rules.md` — General automation best practices
-- `.agent/rules/locator_strategy.md` — Locator selection priority
-- `.agent/rules/selenium_rules.md` — Selenium-specific rules
+- `.claude/rules/automation_rules.md` — General automation best practices
+- `.claude/rules/locator_strategy.md` — Locator selection priority
+- `.claude/rules/selenium_rules.md` — Selenium-specific rules

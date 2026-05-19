@@ -95,5 +95,5 @@ After healing:
 
 ## Rules References
 
-- `.agent/rules/locator_strategy.md` — Master locator priority map
-- `.agent/rules/automation_rules.md` — General automation best practices
+- `.claude/rules/locator_strategy.md` — Master locator priority map
+- `.claude/rules/automation_rules.md` — General automation best practices

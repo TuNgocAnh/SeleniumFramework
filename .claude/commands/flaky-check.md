@@ -28,4 +28,4 @@ $ARGUMENTS
 |---|----------|------------|-----------|-------|-----|
 ```
 
-Tuân thủ `.agent/rules/selenium_rules.md`.
+Tuân thủ `.claude/rules/selenium_rules.md`.

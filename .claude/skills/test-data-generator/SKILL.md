@@ -246,4 +246,4 @@ Module 3: tax_note      = "auto_c01_tax_1712049200"
 
 ## Rules References
 
-- `.agent/rules/automation_rules.md` — Test data generation rules (Section 2)
+- `.claude/rules/automation_rules.md` — Test data generation rules (Section 2)
