@@ -103,15 +103,7 @@ Cung cấp file .doc / Jira ticket / requirement document → AI phân tích chi
 ### Sinh Test Cases từ Requirements
 
 ```
-/generate_testcases_from_requirements     # Quick Mode — sinh nhanh
-/generate_manual_testcases_rbt            # Full RBT — 6 bước đầy đủ
-```
-
-### Sinh Test Cases từ Jira
-
-```
-/fetch_jira_requirements                  # Lấy requirements từ Jira
-/generate_testcases_from_requirements     # Sinh TCs từ requirements đã lấy
+/generate_testcases_from_requirements     # Sinh nhanh từ requirements
 ```
 
 ### Chuyển Manual → Automation
@@ -126,9 +118,7 @@ Cung cấp file .doc / Jira ticket / requirement document → AI phân tích chi
 
 | Tài liệu                              | Đường dẫn                                          |
 | -------------------------------------- | --------------------------------------------------- |
-| Quy trình AI-RBT Manual Testing       | `.agent/skills/rbt_manual_testing/SKILL.md`         |
 | Quy trình QA Automation               | `.agent/skills/qa-automation-engineer/SKILL.md`     |
-| Kế hoạch Manual Testing               | `plans/manual/QUICK_START.md`                       |
 | Kế hoạch Automation                   | `plans/automation/QUICK_START.md`                   |
 
 ---

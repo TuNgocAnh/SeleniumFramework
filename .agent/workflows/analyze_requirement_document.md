@@ -169,7 +169,6 @@ Agent PHẢI xuất artifact theo cấu trúc sau:
 
 | Sau khi phân tích xong | Workflow tiếp theo |
 |---|---|
-| Cần sinh test cases nhanh | `/generate_testcases_from_requirements` |
-| Cần sinh test cases bài bản (RBT 6 bước) | `/generate_manual_testcases_rbt` |
+| Cần sinh test cases | `/generate_testcases_from_requirements` |
 | Cần sinh automation scripts | `/generate_automation_from_testcases` |
 | Cần phân tích cross-module | `/generate_cross_module_test_plan` |

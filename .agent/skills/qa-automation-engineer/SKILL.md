@@ -38,8 +38,6 @@ Use this skill when the user asks about:
 - Flaky test debugging
 - Locator generation
 - Requirements analysis from website
-- Jira integration (fetch requirements, push test results)
-- Xray test management
 
 Typical prompts include:
 
@@ -47,7 +45,7 @@ Typical prompts include:
 - Generate Selenium automation from test case
 - Generate automation from UI steps
 - Generate API tests from Swagger
-- Generate regression suite → _(redirect sang `generate_application_test_plan` hoặc `generate_manual_testcases_rbt`)_
+- Generate regression suite → _(redirect sang `generate_application_test_plan`)_
 - Generate test data
 - Analyze flaky test
 - Generate locator for element
@@ -61,16 +59,13 @@ When the user request matches a specific task, select the appropriate workflow f
 
 ### Generate test cases from requirements
 
-> **Delegate:** Tác vụ này thuộc skill **`rbt_manual_testing`** — không phải `qa-automation-engineer`.
-
-Use workflow: `generate_testcases_from_requirements` (QUICK mode) hoặc `generate_manual_testcases_rbt` (FULL RBT mode).
+Use workflow: `generate_testcases_from_requirements`
 
 Triggers when user asks:
 
-- generate test cases → **delegate to `rbt_manual_testing` (QUICK mode)**
-- write manual test cases → **delegate to `rbt_manual_testing` (QUICK mode)**
-- test scenarios from requirement → **delegate to `rbt_manual_testing` (QUICK mode)**
-- sinh test cases đầy đủ / quy trình 6 bước → **delegate to `rbt_manual_testing` (FULL RBT mode)**
+- generate test cases
+- write manual test cases
+- test scenarios from requirement
 
 ---
 
@@ -156,7 +151,7 @@ Triggers when user asks:
 
 ### Generate regression suite
 
-> **Không có workflow riêng.** Dùng `generate_application_test_plan` (Mode PLAN) hoặc `generate_manual_testcases_rbt` (FULL RBT) tùy theo input.
+> **Không có workflow riêng.** Dùng `generate_application_test_plan` (Mode PLAN).
 
 Triggers when user asks:
 
@@ -249,32 +244,6 @@ Triggers when user asks:
 - phân tích Jira ticket / requirement
 - tìm điểm mơ hồ trong requirement
 - analyze requirement / review requirement document
-
----
-
-### Fetch requirements from Jira
-
-Use workflow: `fetch_jira_requirements`
-
-Triggers when user asks:
-
-- fetch jira requirements
-- lấy requirement từ jira
-- get jira ticket
-- import user stories from jira
-
----
-
-### Import test results to Xray
-
-Use workflow: `import_test_results_xray`
-
-Triggers when user asks:
-
-- push test results to xray
-- đẩy kết quả test lên xray
-- import test execution to jira
-- upload playwright results to xray
 
 ---
 

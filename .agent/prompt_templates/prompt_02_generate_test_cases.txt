@@ -7,9 +7,7 @@
 - Requirement: [DÁN NỘI DUNG REQUIREMENT VÀO ĐÂY / UPLOAD FILE]
 
 # MODE
-# [Chọn 1 trong 2 modes]
-# - QUICK: Sinh test cases nhanh (mặc định nếu không chỉ định)
-# - FULL RBT: Quy trình 6 bước đầy đủ → thay bằng /generate_manual_testcases_rbt
+# - QUICK: Sinh test cases nhanh từ requirements (mặc định)
 
 # OUTPUT FORMAT
 # [Chọn 1 trong các format: CSV / Excel (.xlsx) / TXT / Markdown (.md)]

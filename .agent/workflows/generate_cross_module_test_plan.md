@@ -19,7 +19,7 @@ skills:
 
 | Tình huống | Dùng? |
 |------------|-------|
-| Tính năng đi qua **1 module/form** | ❌ Dùng `/generate_manual_testcases_rbt` |
+| Tính năng đi qua **1 module/form** | ❌ Dùng `/generate_testcases_from_requirements` |
 | Tính năng đi qua **nhiều modules**, mỗi module **độc lập** | ⚠️ Dùng `/generate_application_test_plan` |
 | Tính năng đi qua **nhiều modules NỐI TIẾP**, output phụ thuộc **bộ kết hợp điều kiện** | ✅ **Đúng workflow này** |
 | Cần **ma trận kết hợp** (Pairwise / Decision Table đa chiều) | ✅ **Đúng workflow này** |
@@ -271,7 +271,7 @@ Agent hỗ trợ **3 chiến lược** — user chọn hoặc agent đề xuất
 
 | Mục tiêu | Workflow tiếp theo |
 |----------|-------------------|
-| Sinh **test cases chi tiết** cho từng bộ kết hợp | `/generate_manual_testcases_rbt` — input = ma trận |
+| Sinh **test cases chi tiết** cho từng bộ kết hợp | `/generate_testcases_from_requirements` — input = ma trận |
 | Tạo **test data thật trên hệ thống** qua browser pipeline | `/generate_combinatorial_test_data` — mode PIPELINE |
 | Sinh **automation scripts** | `/generate_automation_from_testcases` — input = test cases |
 

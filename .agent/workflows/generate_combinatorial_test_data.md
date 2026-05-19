@@ -24,7 +24,7 @@ skills:
         ↓
 /generate_combinatorial_test_data    →  Bộ test data (workflow này)
         ↓
-/generate_manual_testcases_rbt       →  Test cases chi tiết
+/generate_testcases_from_requirements →  Test cases chi tiết
         ↓
 /generate_automation_from_testcases  →  Automation scripts
 ```

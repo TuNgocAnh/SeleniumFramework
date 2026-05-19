@@ -1,6 +1,8 @@
 # Selenium Test Framework
 
-Framework tự động kiểm thử web viết bằng **Java 17 + Maven + TestNG**, áp dụng mô hình **Page Object (POM)**. Hỗ trợ chạy đa trình duyệt, song song, data-driven (JSON/Excel), Selenium Grid, mobile emulation, báo cáo Extent + Allure, log file và mã hoá thông tin đăng nhập.
+> 🌐 **English version:** [README.en.md](README.en.md) — _Khi sửa file này, vui lòng update cả `README.en.md` để giữ đồng bộ._
+
+Framework tự động kiểm thử web viết bằng **Java 21 + Maven + TestNG**, áp dụng mô hình **Page Object (POM)**. Hỗ trợ chạy đa trình duyệt, song song, data-driven (JSON/Excel), Selenium Grid, mobile emulation, báo cáo Extent + Allure, log file và mã hoá thông tin đăng nhập.
 
 ---
 
@@ -8,7 +10,7 @@ Framework tự động kiểm thử web viết bằng **Java 17 + Maven + TestNG
 
 | Thành phần | Phiên bản |
 |------------|-----------|
-| JDK        | 17 |
+| JDK        | 21 |
 | Maven      | 3.9+ |
 | Trình duyệt | Chrome / Edge / Firefox (cài sẵn) |
 | Allure CLI | (tuỳ chọn — để xem report Allure dạng web) |

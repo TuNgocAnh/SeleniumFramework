@@ -18,7 +18,7 @@ Khi paste vào Antigravity, agent sẽ tự động load đúng skill và thực
 | # | File | Workflow | Skill |
 |---|------|----------|-------|
 | 01 | `prompt_01_generate_requirements` | `/generate_requirements_from_website` | `requirements-analyzer` |
-| 02 | `prompt_02_generate_test_cases` | `/generate_manual_testcases_rbt` | `rbt_manual_testing` |
+| 02 | `prompt_02_generate_test_cases` | `/generate_testcases_from_requirements` | `qa-automation-engineer` |
 | 03 | `prompt_03_create_framework_playwright` | `/generate_automation_framework` | `qa-automation-engineer` |
 | 03 | `prompt_03_create_framework_selenium` | `/generate_automation_framework` | `qa-automation-engineer` |
 | 04 | `prompt_04_generate_script_playwright` | `/generate_automation_from_testcases` | `qa-automation-engineer` |
