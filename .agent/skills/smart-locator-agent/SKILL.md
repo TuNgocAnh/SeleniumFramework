@@ -70,7 +70,7 @@ page.getByLabel("Email")
 page.getByPlaceholder("Enter your password")
 ```
 
-> **Note:** For detailed rules, refer to `.agent/rules/playwright_rules.md`.
+> **Note:** Playwright rules are not included in this Selenium-focused repo.
 
 ---
 
@@ -112,7 +112,7 @@ driver.findElement(AppiumBy.id("com.app:id/login_button"));
 driver.findElement(AppiumBy.iOSNsPredicateString("label == 'Login'"));
 ```
 
-> **Note:** For detailed rules, refer to `.agent/rules/appium_rules.md`.
+> **Note:** Appium rules are not included in this Selenium-focused repo.
 
 ---
 
@@ -141,6 +141,4 @@ When generating locators, provide:
 ## Rules References
 
 - `.agent/rules/locator_strategy.md` — Master locator priority map
-- `.agent/rules/playwright_rules.md` — Playwright-specific locator rules
 - `.agent/rules/selenium_rules.md` — Selenium-specific locator rules
-- `.agent/rules/appium_rules.md` — Appium-specific locator rules

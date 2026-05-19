@@ -291,6 +291,4 @@ Agent PHẢI tuân thủ các rules chi tiết:
 
 - `.agent/rules/automation_rules.md` — General automation best practices
 - `.agent/rules/locator_strategy.md` — Locator selection priority
-- `.agent/rules/playwright_rules.md` — Playwright-specific rules
 - `.agent/rules/selenium_rules.md` — Selenium-specific rules
-- `.agent/rules/appium_rules.md` — Appium mobile automation rules

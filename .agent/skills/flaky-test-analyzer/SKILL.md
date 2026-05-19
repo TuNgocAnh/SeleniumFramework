@@ -64,7 +64,7 @@ Thread.sleep(3000);       // Hard sleep — BAD
 page.waitForTimeout(2000); // Fixed delay — BAD
 ```
 
-**Fix:** Use smart waits as defined in `.agent/rules/selenium_rules.md` and `.agent/rules/playwright_rules.md`:
+**Fix:** Use smart waits as defined in `.agent/rules/selenium_rules.md`:
 ```java
 // Selenium
 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -106,4 +106,3 @@ The agent MUST follow these rules when analyzing flaky tests:
 - `.agent/rules/locator_strategy.md` — Locator stability rules
 - `.agent/rules/automation_rules.md` — General automation best practices
 - `.agent/rules/selenium_rules.md` — Selenium wait strategy
-- `.agent/rules/playwright_rules.md` — Playwright auto-waiting

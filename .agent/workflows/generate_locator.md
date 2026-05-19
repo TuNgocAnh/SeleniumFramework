@@ -42,13 +42,11 @@ skills:
    - **Context:** Nằm trong page chính, dialog/modal, sidebar, table, iframe?
    - **Thao tác:** click, fill, select, hover, verify text, verify visibility?
 
-2. **Xác định framework và đọc rules tương ứng:**
+2. **Đọc rules tương ứng:**
 
    | Framework | Rule file |
    |-----------|-----------|
-   | Playwright | `.agent/rules/playwright_rules.md` |
    | Selenium | `.agent/rules/selenium_rules.md` |
-   | Appium | `.agent/rules/appium_rules.md` |
 
 3. **Kiểm tra Page class hiện tại (nếu User chỉ định):**
    - Đọc file Page class → biết locator đã có sẵn
