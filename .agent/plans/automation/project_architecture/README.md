@@ -1,7 +1,7 @@
 # Master Framework for E2E Automation (Generalized)
 
 **Workflow:** `/generate_automation_from_testcases` hoặc `/generate_automation_from_ui_flow`
-**Skill:** `qa_automation_engineer` + `framework_architect`
+**Skill:** `qa-automation-engineer` + `framework-architect`
 
 ---
 
@@ -345,6 +345,6 @@ Mỗi framework PHẢI bao gồm các thành phần sau:
 
 ## Tham chiếu
 
-- **Skill chi tiết:** `.agent/skills/framework_architect/SKILL.md`
+- **Skill chi tiết:** `.agent/skills/framework-architect/SKILL.md`
 - **Rules:** `.agent/rules/automation_rules.md`, `.agent/rules/locator_strategy.md`
 - **Workflow scaffold:** `/generate_automation_framework`

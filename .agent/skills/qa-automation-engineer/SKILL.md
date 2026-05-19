@@ -1,5 +1,5 @@
 ---
-name: QA Automation Engineer
+name: qa-automation-engineer
 description: Skill hỗ trợ agent thực hiện các tác vụ QA automation testing bao gồm generate test cases, automation scripts, API tests, locators, phân tích flaky tests, và tạo test data.
 ---
 
@@ -25,7 +25,7 @@ This skill is designed for modern QA workflows and automation development.
 
 ---
 
-# When to Use
+## When to Use
 
 Use this skill when the user asks about:
 
@@ -55,13 +55,13 @@ Typical prompts include:
 
 ---
 
-# Workflow Routing
+## Workflow Routing
 
 When the user request matches a specific task, select the appropriate workflow file from `.agent/workflows/`.
 
 ### Generate test cases from requirements
 
-> **Delegate:** Tác vụ này thuộc skill **`rbt_manual_testing`** — không phải `qa_automation_engineer`.
+> **Delegate:** Tác vụ này thuộc skill **`rbt_manual_testing`** — không phải `qa-automation-engineer`.
 
 Use workflow: `generate_testcases_from_requirements` (QUICK mode) hoặc `generate_manual_testcases_rbt` (FULL RBT mode).
 
@@ -167,7 +167,7 @@ Triggers when user asks:
 
 ### Generate automation framework
 
-> **Delegate:** Tác vụ này sử dụng skill **`framework_architect`** để thiết kế framework.
+> **Delegate:** Tác vụ này sử dụng skill **`framework-architect`** để thiết kế framework.
 
 Use workflow: `generate_automation_framework`
 
@@ -236,7 +236,7 @@ Triggers when user asks:
 
 ### Analyze requirement document
 
-> **Delegate:** Tác vụ này sử dụng skill **`requirements_analyzer`** để phân tích requirement documents.
+> **Delegate:** Tác vụ này sử dụng skill **`requirements-analyzer`** để phân tích requirement documents.
 
 Use workflow: `analyze_requirement_document`
 
@@ -278,7 +278,7 @@ Triggers when user asks:
 
 ---
 
-# Automation Framework
+## Automation Framework
 
 Default automation stack:
 
@@ -291,9 +291,9 @@ Default automation stack:
 
 ---
 
-# Locator Strategy
+## Locator Strategy
 
-## Selenium Locator Priority
+### Selenium Locator Priority
 
 1. `id`
 2. `data-testid`
@@ -303,7 +303,7 @@ Default automation stack:
 
 Avoid fragile locators such as auto-generated class names or positional xpaths.
 
-## Playwright Locator Priority
+### Playwright Locator Priority
 
 1. `getByRole()`
 2. `getByLabel()`
@@ -319,7 +319,7 @@ Avoid fragile selectors such as dynamic class names.
 
 ---
 
-# Rules References
+## Rules References
 
 The agent MUST also follow the detailed rules defined in `.agent/rules/`:
 
@@ -331,7 +331,7 @@ The agent MUST also follow the detailed rules defined in `.agent/rules/`:
 
 ---
 
-# References
+## References
 
 The agent may consult additional documentation in the `references/` folder:
 
@@ -346,7 +346,7 @@ External references (thay thế cho các file đã gộp):
 
 ---
 
-# Output
+## Output
 
 Depending on the request, the agent may return:
 

@@ -2,7 +2,7 @@
 # BƯỚC 4: CHIẾN LƯỢC DỮ LIỆU (Test Data Strategy)
 # ============================================================
 # Workflow: /generate_automation_from_testcases (tiếp tục)
-# Skill:    qa_automation_engineer + test_data_generator
+# Skill:    qa-automation-engineer + test-data-generator
 # ============================================================
 # CÁCH DÙNG:
 # 1. Gửi prompt này SAU KHI đã review POM ở Bước 3

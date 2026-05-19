@@ -2,7 +2,7 @@
 # BƯỚC 2: PHÂN TÍCH & ĐIỀU TRA UI (Analysis & UI Recon)
 # ============================================================
 # Workflow: /generate_automation_from_testcases (tiếp tục)
-# Skill:    qa_automation_engineer + ui_debug_agent
+# Skill:    qa-automation-engineer + ui-debug-agent
 # ============================================================
 # CÁCH DÙNG:
 # 1. Gửi prompt này SAU KHI AI đã xác nhận ở Bước 1

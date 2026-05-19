@@ -1,14 +1,14 @@
 ---
 description: Thực thi UI flow trực tiếp trên browser, thu thập locators từ DOM thực tế, và sinh automation scripts. Hỗ trợ Playwright, Selenium, Appium.
 skills:
-  - ui_debug_agent
-  - smart_locator_agent
-  - qa_automation_engineer
+  - ui-debug-agent
+  - smart-locator-agent
+  - qa-automation-engineer
 ---
 
 # Workflow: Sinh Automation từ UI Flow
 
-> **BẮT BUỘC (MANDATORY SKILL):** Bạn PHẢI nạp và đọc kỹ nội dung của skill **`ui_debug_agent`** (tại `.agent/skills/ui_debug_agent/SKILL.md`) trước khi bắt đầu. Ngoài ra tham khảo thêm skill **`smart_locator_agent`** để sinh locator ổn định và **`qa_automation_engineer`** cho quy tắc automation chung.
+> **BẮT BUỘC (MANDATORY SKILL):** Bạn PHẢI nạp và đọc kỹ nội dung của skill **`ui-debug-agent`** (tại `.agent/skills/ui-debug-agent/SKILL.md`) trước khi bắt đầu. Ngoài ra tham khảo thêm skill **`smart-locator-agent`** để sinh locator ổn định và **`qa-automation-engineer`** cho quy tắc automation chung.
 
 Workflow này giúp agent **thực thi trực tiếp** một chuỗi thao tác UI trên browser thật, thu thập locators từ DOM thực tế, và sinh automation scripts hoàn chỉnh — tất cả trong một luồng tự động, không cần manual test case có sẵn.
 

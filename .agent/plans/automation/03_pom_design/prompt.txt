@@ -2,7 +2,7 @@
 # BƯỚC 3: THIẾT KẾ KIẾN TRÚC POM (POM Design)
 # ============================================================
 # Workflow: /generate_automation_from_testcases (tiếp tục)
-# Skill:    qa_automation_engineer
+# Skill:    qa-automation-engineer
 # ============================================================
 # CÁCH DÙNG:
 # 1. Gửi prompt này SAU KHI đã review locators ở Bước 2

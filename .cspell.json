@@ -1,0 +1,52 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "Appium",
+    "appium",
+    "automations",
+    "boundary",
+    "combinatorial",
+    "Cartesian",
+    "cspell",
+    "datatestid",
+    "getByLabel",
+    "getByPlaceholder",
+    "getByRole",
+    "getByTestId",
+    "getByText",
+    "Jira",
+    "jira",
+    "Locator",
+    "locators",
+    "markdownlint",
+    "OpenAPI",
+    "Pairwise",
+    "pairwise",
+    "Playwright",
+    "playwright",
+    "POM",
+    "rbt",
+    "RBT",
+    "Selenium",
+    "selenium",
+    "Swagger",
+    "swagger",
+    "testid",
+    "TestNG",
+    "testng",
+    "Xray",
+    "xray",
+    "xpath",
+    "XPath"
+  ],
+  "ignoreRegExpList": [
+    "/[À-ỹ]+/g"
+  ],
+  "ignorePaths": [
+    "node_modules/**",
+    "target/**",
+    "**/*.lock",
+    "**/*.log"
+  ]
+}

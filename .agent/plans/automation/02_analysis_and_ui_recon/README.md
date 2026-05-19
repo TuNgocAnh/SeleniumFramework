@@ -1,7 +1,7 @@
 # Bước 2: Phân tích & Điều tra UI (Analysis & UI Recon)
 
 **Workflow:** `/generate_automation_from_testcases` (tiếp tục)
-**Skill:** `qa_automation_engineer` + `ui_debug_agent`
+**Skill:** `qa-automation-engineer` + `ui-debug-agent`
 
 ---
 

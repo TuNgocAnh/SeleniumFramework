@@ -12,10 +12,10 @@ Bỏ phần Playwright, Appium, RBT manual, Jira/Xray integration.
   - `automation_rules.md` — quy tắc automation chung
   - `locator_strategy.md` — chiến lược chọn locator
 - `skills/` — vai trò AI agent
-  - `framework_architect/`, `qa_automation_engineer/`
-  - `smart_locator_agent/`, `locator_healer_agent/`
-  - `test_data_generator/`, `flaky_test_analyzer/`
-  - `ui_debug_agent/`, `requirements_analyzer/`
+  - `framework-architect/`, `qa-automation-engineer/`
+  - `smart-locator-agent/`, `locator-healer-agent/`
+  - `test-data-generator/`, `flaky-test-analyzer/`
+  - `ui-debug-agent/`, `requirements-analyzer/`
 - `workflows/` — quy trình từng đầu việc (sinh framework, sinh script từ testcase/UI flow, sinh locator, test data, phân tích flaky…)
 - `prompt_templates/` — prompt mẫu (Selenium-only)
   - `prompt_01..02` requirements & test cases

@@ -1,7 +1,7 @@
 # Bước 6: Kiểm duyệt & Tối ưu (Review & Refactoring)
 
 **Workflow:** `/generate_automation_from_testcases` (tiếp tục)
-**Skill:** `qa_automation_engineer`
+**Skill:** `qa-automation-engineer`
 
 ---
 

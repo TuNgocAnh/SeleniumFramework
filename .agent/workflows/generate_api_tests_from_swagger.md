@@ -1,13 +1,13 @@
 ---
 description: Sinh API test cases và automation scripts từ Swagger/OpenAPI specification. Hỗ trợ 2 mode — SPEC (chỉ test cases) và FULL (test cases + automation scripts).
 skills:
-  - qa_automation_engineer
-  - test_data_generator
+  - qa-automation-engineer
+  - test-data-generator
 ---
 
 # Workflow: Sinh API Tests từ Swagger/OpenAPI
 
-> **BẮT BUỘC (MANDATORY SKILL):** Bạn PHẢI nạp và đọc kỹ nội dung của skill **`qa_automation_engineer`** (tại `.agent/skills/qa_automation_engineer/SKILL.md`) trước khi bắt đầu. Ngoài ra, tham khảo thêm skill **`test_data_generator`** để sinh test data đúng chuẩn.
+> **BẮT BUỘC (MANDATORY SKILL):** Bạn PHẢI nạp và đọc kỹ nội dung của skill **`qa-automation-engineer`** (tại `.agent/skills/qa-automation-engineer/SKILL.md`) trước khi bắt đầu. Ngoài ra, tham khảo thêm skill **`test-data-generator`** để sinh test data đúng chuẩn.
 
 Workflow này giúp agent phân tích Swagger/OpenAPI specification, xác định các endpoints, sinh API test cases có cấu trúc, và (tùy mode) tự động sinh automation scripts hoàn chỉnh.
 
@@ -88,7 +88,7 @@ Workflow này giúp agent phân tích Swagger/OpenAPI specification, xác địn
    - **Expected Response:** Status code, Response body structure, Error message
    - **Priority:** P1 (Critical) / P2 (High) / P3 (Medium) / P4 (Low)
 
-3. **Sinh Test Data Matrix** (sử dụng skill `test_data_generator`):
+3. **Sinh Test Data Matrix** (sử dụng skill `test-data-generator`):
    - Data valid cho Happy Path
    - Data invalid cho Negative cases (mỗi field 1 bộ negative)
    - Boundary values theo schema constraints (minLength, maxLength, min, max, pattern)

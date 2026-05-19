@@ -1,13 +1,13 @@
 ---
 description: Thiết kế và scaffold automation framework hoàn chỉnh. Hỗ trợ Playwright, Selenium, Appium — Web, Mobile, API.
 skills:
-  - framework_architect
-  - qa_automation_engineer
+  - framework-architect
+  - qa-automation-engineer
 ---
 
 # Workflow: Thiết Kế Automation Framework
 
-> **BẮT BUỘC (MANDATORY SKILL):** Bạn PHẢI nạp và đọc kỹ nội dung của skill **`framework_architect`** (tại `.agent/skills/framework_architect/SKILL.md`) trước khi bắt đầu. Ngoài ra, tham khảo thêm skill **`qa_automation_engineer`** để nắm các quy tắc automation chung.
+> **BẮT BUỘC (MANDATORY SKILL):** Bạn PHẢI nạp và đọc kỹ nội dung của skill **`framework-architect`** (tại `.agent/skills/framework-architect/SKILL.md`) trước khi bắt đầu. Ngoài ra, tham khảo thêm skill **`qa-automation-engineer`** để nắm các quy tắc automation chung.
 
 Workflow này giúp agent thiết kế, scaffold và triển khai một automation framework hoàn chỉnh từ đầu, phù hợp với nhu cầu cụ thể của project.
 
@@ -17,7 +17,7 @@ Workflow này giúp agent thiết kế, scaffold và triển khai một automati
 - **KHÔNG đoán** tech stack — phải hỏi user xác nhận trước khi scaffold
 - **PHẢI tạo artifact `task.md`** để theo dõi tiến độ
 - Mỗi file sinh ra phải **biên dịch/chạy được ngay** — không để placeholder `// TODO`
-- Framework phải tuân thủ design principles trong skill `framework_architect`
+- Framework phải tuân thủ design principles trong skill `framework-architect`
 
 ## Stacks hỗ trợ
 
@@ -79,7 +79,7 @@ Workflow này giúp agent thiết kế, scaffold và triển khai một automati
    - [ ] Bước 6: Verify & Deliver
    ```
 
-2. **Tạo thư mục project** theo template trong skill `framework_architect`:
+2. **Tạo thư mục project** theo template trong skill `framework-architect`:
    - Tham khảo mục **Project Structure Templates** trong SKILL.md
    - Tạo toàn bộ thư mục + file cấu hình gốc
 

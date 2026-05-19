@@ -1,8 +1,8 @@
 ---
 description: Phân tích tính năng đi qua nhiều modules nối tiếp, xây dựng Module Map + Dimension Catalog, và sinh ma trận kết hợp (Pairwise/Business-critical/Full Cartesian). Hỗ trợ 2 modes — DOCUMENT (từ tài liệu) và BROWSER (inspect DOM thực tế).
 skills:
-  - qa_automation_engineer
-  - requirements_analyzer
+  - qa-automation-engineer
+  - requirements-analyzer
 ---
 
 # /generate_cross_module_test_plan — Phân Tích Cross-Module & Sinh Ma Trận Kết Hợp
@@ -10,8 +10,8 @@ skills:
 > **Dùng khi:** Tính năng cần test đi qua **nhiều modules nối tiếp nhau**, mỗi module có nhiều lựa chọn (dimensions), và bộ kết hợp các lựa chọn quyết định output cuối cùng.
 
 > **BẮT BUỘC (MANDATORY):** Trước khi bắt đầu, PHẢI nạp và đọc kỹ:
-> - **Skill:** `.agent/skills/qa_automation_engineer/SKILL.md` — Workflow routing + automation rules
-> - **Skill:** `.agent/skills/requirements_analyzer/SKILL.md` — Phân tích requirements
+> - **Skill:** `.agent/skills/qa-automation-engineer/SKILL.md` — Workflow routing + automation rules
+> - **Skill:** `.agent/skills/requirements-analyzer/SKILL.md` — Phân tích requirements
 
 ---
 

@@ -2,7 +2,7 @@
 # BƯỚC 1: KHỞI TẠO NGỮ CẢNH (Context & Role-play)
 # ============================================================
 # Workflow: /generate_automation_from_testcases
-# Skill:    qa_automation_engineer
+# Skill:    qa-automation-engineer
 # ============================================================
 # CÁCH DÙNG:
 # 1. Copy nội dung bên dưới dòng "---START---"

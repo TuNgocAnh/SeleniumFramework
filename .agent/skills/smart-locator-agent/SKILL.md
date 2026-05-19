@@ -1,5 +1,5 @@
 ---
-name: Smart Locator Agent
+name: smart-locator-agent
 description: Skill sinh locator ổn định và dễ bảo trì cho UI automation, hỗ trợ Playwright, Selenium và Appium.
 ---
 

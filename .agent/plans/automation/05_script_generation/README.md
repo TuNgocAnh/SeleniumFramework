@@ -1,7 +1,7 @@
 # Bước 5: Sinh mã Automation (Script Generation)
 
 **Workflow:** `/generate_automation_from_testcases` (tiếp tục)
-**Skill:** `qa_automation_engineer`
+**Skill:** `qa-automation-engineer`
 
 ---
 

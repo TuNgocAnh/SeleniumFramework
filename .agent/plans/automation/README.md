@@ -17,13 +17,13 @@ Sử dụng AI để tự động hóa quá trình xây dựng Automation Framew
 
 | Bước | Tên | Mục đích | Skill |
 |------|-----|----------|-------|
-| **0** | Project Architecture | Setup kiến trúc thư mục chuẩn | `qa_automation_engineer` |
-| **1** | Context & Role-play | Thiết lập vai trò + tech stack | `qa_automation_engineer` |
-| **2** | Analysis & UI Recon | AI tự mở browser, thu thập locators | `qa_automation_engineer` + `ui_debug_agent` |
-| **3** | POM Design | Thiết kế class Page Objects | `qa_automation_engineer` |
-| **4** | Test Data Strategy | Sinh class Data Generator | `qa_automation_engineer` + `test_data_generator` |
-| **5** | Script Generation | Sinh test script + tự chạy + tự fix | `qa_automation_engineer` |
-| **6** | Review & Refactoring | Clean code + CI/CD readiness | `qa_automation_engineer` |
+| **0** | Project Architecture | Setup kiến trúc thư mục chuẩn | `qa-automation-engineer` |
+| **1** | Context & Role-play | Thiết lập vai trò + tech stack | `qa-automation-engineer` |
+| **2** | Analysis & UI Recon | AI tự mở browser, thu thập locators | `qa-automation-engineer` + `ui-debug-agent` |
+| **3** | POM Design | Thiết kế class Page Objects | `qa-automation-engineer` |
+| **4** | Test Data Strategy | Sinh class Data Generator | `qa-automation-engineer` + `test-data-generator` |
+| **5** | Script Generation | Sinh test script + tự chạy + tự fix | `qa-automation-engineer` |
+| **6** | Review & Refactoring | Clean code + CI/CD readiness | `qa-automation-engineer` |
 
 *(Mỗi bước tương ứng 1 thư mục con, gồm `README.md` + `prompt.txt`)*
 

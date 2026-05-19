@@ -1,7 +1,7 @@
 # Bước 3: Thiết kế cấu trúc POM (POM Design)
 
 **Workflow:** `/generate_automation_from_testcases` (tiếp tục)
-**Skill:** `qa_automation_engineer`
+**Skill:** `qa-automation-engineer`
 
 ---
 

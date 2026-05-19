@@ -2,7 +2,7 @@
 # BƯỚC 5: SINH MÃ AUTOMATION (Script Generation)
 # ============================================================
 # Workflow: /generate_automation_from_testcases (tiếp tục)
-# Skill:    qa_automation_engineer
+# Skill:    qa-automation-engineer
 # ============================================================
 # CÁCH DÙNG:
 # 1. Gửi prompt này SAU KHI đã review POM (Bước 3) và Data (Bước 4)

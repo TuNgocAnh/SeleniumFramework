@@ -20,5 +20,5 @@ Tôi cần xây dựng Web UI Automation Framework từ đầu.
 - README.md hướng dẫn
 
 # GHI CHÚ
-- Agent tự scaffold BẢNG project structure dựa trên skill framework_architect.
+- Agent tự scaffold BẢNG project structure dựa trên skill framework-architect.
 - Agent tự verify framework hoạt động (compile + chạy example test).

@@ -2,7 +2,7 @@
 # BƯỚC 6: KIỂM DUYỆT & TỐI ƯU (Review & Refactoring)
 # ============================================================
 # Workflow: /generate_automation_from_testcases (tiếp tục)
-# Skill:    qa_automation_engineer
+# Skill:    qa-automation-engineer
 # ============================================================
 # CÁCH DÙNG:
 # 1. Gửi prompt này SAU KHI test đã chạy PASS ở Bước 5

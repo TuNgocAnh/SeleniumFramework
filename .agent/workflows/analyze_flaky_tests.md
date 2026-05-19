@@ -1,14 +1,14 @@
 ---
 description: Phân tích automation tests không ổn định (flaky), xác định root cause và tự động khắc phục. Hỗ trợ 2 mode — ANALYZE (chỉ báo cáo) và FIX (báo cáo + tự sửa code).
 skills:
-  - flaky_test_analyzer
-  - smart_locator_agent
-  - locator_healer_agent
+  - flaky-test-analyzer
+  - smart-locator-agent
+  - locator-healer-agent
 ---
 
 # Workflow: Phân Tích & Khắc Phục Flaky Tests
 
-> **BẮT BUỘC (MANDATORY SKILL):** Bạn PHẢI nạp và đọc kỹ nội dung của skill **`flaky_test_analyzer`** (tại `.agent/skills/flaky_test_analyzer/SKILL.md`) trước khi bắt đầu. Ngoài ra, tham khảo thêm skill **`smart_locator_agent`** và **`locator_healer_agent`** khi cần sửa/thay locator.
+> **BẮT BUỘC (MANDATORY SKILL):** Bạn PHẢI nạp và đọc kỹ nội dung của skill **`flaky-test-analyzer`** (tại `.agent/skills/flaky-test-analyzer/SKILL.md`) trước khi bắt đầu. Ngoài ra, tham khảo thêm skill **`smart-locator-agent`** và **`locator-healer-agent`** khi cần sửa/thay locator.
 
 Workflow này giúp agent tự động phân tích các automation test không ổn định (lúc pass lúc fail), xác định root cause chính xác, và (tùy mode) tự động sửa code để stabilize test.
 
@@ -109,7 +109,7 @@ Agent cần ít nhất **1 trong các input** sau từ user:
 3. **Nếu cần inspect DOM thực tế** (locator issue):
    - Mở browser bằng MCP: `browser_navigate` → `browser_resize(1920, 1080)` → `browser_snapshot`
    - So sánh locator trong code vs DOM thực tế
-   - Xác định locator thay thế ổn định hơn (dùng skill `smart_locator_agent`)
+   - Xác định locator thay thế ổn định hơn (dùng skill `smart-locator-agent`)
 
 ### Bước 3: Lập báo cáo & Đề xuất fix (Report — CHECKPOINT)
 
@@ -154,7 +154,7 @@ Agent cần ít nhất **1 trong các input** sau từ user:
 1. **Sửa code** theo thứ tự ưu tiên (fix nghiêm trọng nhất trước):
 
    **Fix Locator:**
-   - Dùng skill `locator_healer_agent` để thay thế locator hỏng
+   - Dùng skill `locator-healer-agent` để thay thế locator hỏng
    - Tuân thủ locator priority trong `.agent/rules/locator_strategy.md`
    - Verify locator mới trên DOM thực tế trước khi commit vào code
 
@@ -223,7 +223,7 @@ Agent cần ít nhất **1 trong các input** sau từ user:
 |---|---|
 | **Test chỉ fail trên CI** | So sánh env CI vs local (viewport, timezone, headless, resources). Kiểm tra viewport `1920x1080` có được set trên CI không |
 | **Test fail khi chạy parallel** | Kiểm tra test data isolation, shared state, database locks. Đề xuất unique data per worker |
-| **Test fail sau deploy mới** | Kiểm tra DOM changes, API response changes. Dùng `locator_healer_agent` để update locators |
+| **Test fail sau deploy mới** | Kiểm tra DOM changes, API response changes. Dùng `locator-healer-agent` để update locators |
 | **Test fail ngẫu nhiên không pattern** | Thu thập thêm data (chạy 10+ lần), kiểm tra memory leak, resource exhaustion |
 | **Multiple tests cùng flaky** | Tìm common factor (shared fixture, shared page object, shared config) |
 | **Test fail do external API** | Đề xuất mock/stub external dependencies, retry logic cho API calls |

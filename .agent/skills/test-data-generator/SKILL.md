@@ -1,5 +1,5 @@
 ---
-name: Test Data Generator
+name: test-data-generator
 description: Skill sinh test data có cấu trúc, unique, traceable cho automation tests, bao gồm positive, negative, boundary và edge cases.
 ---
 

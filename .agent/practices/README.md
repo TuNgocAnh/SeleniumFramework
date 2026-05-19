@@ -127,7 +127,7 @@ Cung cấp file .doc / Jira ticket / requirement document → AI phân tích chi
 | Tài liệu                              | Đường dẫn                                          |
 | -------------------------------------- | --------------------------------------------------- |
 | Quy trình AI-RBT Manual Testing       | `.agent/skills/rbt_manual_testing/SKILL.md`         |
-| Quy trình QA Automation               | `.agent/skills/qa_automation_engineer/SKILL.md`     |
+| Quy trình QA Automation               | `.agent/skills/qa-automation-engineer/SKILL.md`     |
 | Kế hoạch Manual Testing               | `plans/manual/QUICK_START.md`                       |
 | Kế hoạch Automation                   | `plans/automation/QUICK_START.md`                   |
 

@@ -1,7 +1,7 @@
 # Bước 1: Khởi tạo ngữ cảnh (Context & Role-play)
 
 **Workflow:** `/generate_automation_from_testcases`
-**Skill:** `qa_automation_engineer`
+**Skill:** `qa-automation-engineer`
 
 ---
 
