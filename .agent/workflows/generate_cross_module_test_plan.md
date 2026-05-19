@@ -10,8 +10,8 @@ skills:
 > **Dùng khi:** Tính năng cần test đi qua **nhiều modules nối tiếp nhau**, mỗi module có nhiều lựa chọn (dimensions), và bộ kết hợp các lựa chọn quyết định output cuối cùng.
 
 > **BẮT BUỘC (MANDATORY):** Trước khi bắt đầu, PHẢI nạp và đọc kỹ:
-> - **Skill:** `.agent/skills/qa-automation-engineer/SKILL.md` — Workflow routing + automation rules
-> - **Skill:** `.agent/skills/requirements-analyzer/SKILL.md` — Phân tích requirements
+> - **Skill:** `.claude/skills/qa-automation-engineer/SKILL.md` — Workflow routing + automation rules
+> - **Skill:** `.claude/skills/requirements-analyzer/SKILL.md` — Phân tích requirements
 
 ---
 

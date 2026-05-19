@@ -17,7 +17,9 @@ Primary user docs:
 - `src/test/resources/config/` — `config.properties`, env-specific files, credentials, log4j2
 - `src/test/resources/testdata/` — test data (JSON, Excel)
 - `testng*.xml` — TestNG suites (default / smoke / parallel)
-- `.agent/` — Claude Code skills, workflows, plans, prompt templates
+- `.claude/skills/` — Claude Code skills (agent capabilities)
+- `.claude/commands/` — Slash commands (invokable via `/<name>`)
+- `.agent/` — Reference documentation (rules, workflows, plans, prompt templates)
 
 ## Common Commands
 
@@ -48,6 +50,30 @@ mvn allure:serve
 
 **When editing [README.md](README.md), also update [README.en.md](README.en.md) with the equivalent change, and vice versa.** The two files are mirrors — Vietnamese and English — and must stay in sync. If the change is content-only (text, tables), translate it accordingly; if it's structural (headings, sections), apply the same structural change to both.
 
-## .agent Folder
+## Claude Code Customization
 
-This repo includes Claude Code skills under `.agent/skills/` (kebab-case names — see folder names). Skill `name:` frontmatter must match folder name and contain only lowercase letters, numbers, and hyphens. Workflows referenced by skills live in `.agent/workflows/`.
+Standard Claude Code layout:
+
+- `.claude/skills/<name>/SKILL.md` — Skills (agent capabilities). Skill `name:` frontmatter must equal folder name and use only `[a-z0-9-]`.
+- `.claude/commands/<name>.md` — Slash commands. Invoke with `/<name>` in Claude Code. Use `$ARGUMENTS` for user input.
+- `.claude/settings.json` — Project settings (permissions, env, hooks).
+- `.claude/settings.local.json` — Local overrides (gitignored).
+
+Available slash commands:
+
+| Command | Purpose |
+|---|---|
+| `/test-gen <requirement>` | Sinh manual test cases |
+| `/flaky-check <test-file>` | Phân tích flaky test + đề xuất fix |
+| `/locator-gen <element-desc>` | Sinh locator + healable fallback |
+| `/page-gen <page-name>` | Sinh Page Object class theo convention |
+
+## .agent Folder (reference documentation)
+
+`.agent/` chứa documentation tham khảo cho Claude (không auto-discover, được reference từ skills/commands khi cần):
+
+- `.agent/rules/` — Coding rules (Selenium, locator strategy, automation best practices)
+- `.agent/workflows/` — Workflow guides (bản gốc các quy trình, dùng làm reference cho slash commands)
+- `.agent/plans/` — 6-step automation plan
+- `.agent/practices/` — Sample requirements và test cases
+- `.agent/prompt_templates/` — Prompt mẫu để paste vào AI tool khác (Antigravity, Gemini)

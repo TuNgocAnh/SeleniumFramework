@@ -67,4 +67,25 @@ public class HealingDemoTests extends BaseTest {
 
         Assert.assertThrows(NoSuchElementException.class, nonExistent::find);
     }
+
+    @Test(groups = {"regression"},
+            description = "findWithWait() chờ DOM render xong trước khi quyết định heal")
+    public void healWithWaitForDomRender() {
+        // Sau khi click login, ProductsPage chưa render xong ngay lập tức.
+        // findWithWait sẽ poll mỗi 500ms — primary có thể xuất hiện ở tick thứ 2-3.
+        DriverFactory.getDriver().findElement(By.id("user-name"))
+                .sendKeys(CredentialsManager.user("standard"));
+        DriverFactory.getDriver().findElement(By.id("password"))
+                .sendKeys(CredentialsManager.pass("standard"));
+        DriverFactory.getDriver().findElement(By.id("login-button")).click();
+
+        HealableElement productsTitle = HealableElement.builder()
+                .primary(By.cssSelector(".title"))
+                .fallback(ByTextStrategy.of("Products"))
+                .build();
+
+        // findWithWait() — chờ DOM render, không vội heal sai
+        Assert.assertTrue(productsTitle.findWithWait().isDisplayed(),
+                "Không lấy được products title sau khi chờ");
+    }
 }

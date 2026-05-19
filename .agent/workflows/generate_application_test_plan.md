@@ -8,7 +8,7 @@ skills:
 
 # Workflow: Khám Phá Ứng Dụng & Sinh Test Plan
 
-> **BẮT BUỘC (MANDATORY SKILL):** Bạn PHẢI nạp và đọc kỹ nội dung của skill **`qa-automation-engineer`** (tại `.agent/skills/qa-automation-engineer/SKILL.md`) trước khi bắt đầu. Ngoài ra, tham khảo thêm skill **`requirements-analyzer`** và **`ui-debug-agent`** để hỗ trợ phân tích UI.
+> **BẮT BUỘC (MANDATORY SKILL):** Bạn PHẢI nạp và đọc kỹ nội dung của skill **`qa-automation-engineer`** (tại `.claude/skills/qa-automation-engineer/SKILL.md`) trước khi bắt đầu. Ngoài ra, tham khảo thêm skill **`requirements-analyzer`** và **`ui-debug-agent`** để hỗ trợ phân tích UI.
 
 Workflow này giúp agent tự động khám phá một ứng dụng web, phân tích cấu trúc, xác định các modules/user flows quan trọng, và sinh ra Test Plan hoàn chỉnh.
 

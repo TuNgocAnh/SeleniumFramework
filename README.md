@@ -154,8 +154,10 @@ HealableElement loginBtn = HealableElement.builder()
     .fallback(ByAttributeContainsStrategy.of("class", "submit"))
     .build();
 
-loginBtn.find().click();
+loginBtn.findWithWait().click();  // dùng cho hầu hết trường hợp
 ```
+
+### Strategies
 
 | Strategy | Khi dùng |
 |----------|----------|
@@ -163,7 +165,20 @@ loginBtn.find().click();
 | `ByRoleStrategy` | Button/link/textbox có `aria-label` hoặc accessible name ổn định |
 | `ByAttributeContainsStrategy` | Last resort — fuzzy match qua một phần của attribute (vd `class*='submit'`) |
 
-> **Triết lý:** healing chỉ kick-in khi fallback tìm thấy **chính xác 1** element — tránh click nhầm. Mỗi heal event đều được log WARNING + đính kèm Allure để dev không bỏ sót việc fix locator gốc. Xem demo tại `src/test/java/com/selenium/tests/HealingDemoTests.java`.
+### Hai chế độ tìm element
+
+| Method | Hành vi | Khi dùng |
+|--------|---------|----------|
+| `find()` | Thử primary + fallback **1 lần ngay** (~40ms), fail là throw | DOM chắc chắn đã render (kiểm tra ngay tại chỗ) |
+| `findWithWait(int seconds)` | Poll mỗi 500ms, hết timeout mới throw | DOM đang render / sau khi click navigate |
+| `findWithWait()` | Như trên, dùng `explicitWait` từ config (mặc định 15s) | **Default cho 90% trường hợp** |
+
+> **Triết lý:**
+> - Healing chỉ kick-in khi fallback tìm thấy **chính xác 1** element → tránh click nhầm.
+> - Healing **không thay thế** explicit wait — nó chạy bên trong wait, mỗi tick poll thử cả primary + fallback. Element xuất hiện ở tick nào sẽ return tick đó, không lãng phí thời gian.
+> - Mỗi heal event đều được log WARNING + đính kèm Allure để dev không bỏ sót việc fix locator gốc.
+>
+> Xem demo tại `src/test/java/com/selenium/tests/HealingDemoTests.java`.
 
 ---
 

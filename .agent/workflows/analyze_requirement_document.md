@@ -4,7 +4,7 @@ skills:
   - requirements-analyzer
 ---
 
-> **BẮT BUỘC (MANDATORY SKILL):** Bạn PHẢI nạp và đọc kỹ nội dung của skill **`requirements-analyzer`** (tại `.agent/skills/requirements-analyzer/SKILL.md`) để hiểu cách phân tích yêu cầu chuẩn trước khi bắt đầu.
+> **BẮT BUỘC (MANDATORY SKILL):** Bạn PHẢI nạp và đọc kỹ nội dung của skill **`requirements-analyzer`** (tại `.claude/skills/requirements-analyzer/SKILL.md`) để hiểu cách phân tích yêu cầu chuẩn trước khi bắt đầu.
 
 # Workflow: Phân Tích Requirement Document
 

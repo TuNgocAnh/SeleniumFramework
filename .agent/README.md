@@ -34,5 +34,5 @@ Bỏ phần Playwright, Appium, RBT manual, Jira/Xray integration.
 Khi nhờ AI sinh/sửa code Selenium trong repo này, yêu cầu AI đọc trước:
 1. `.agent/rules/selenium_rules.md`
 2. `.agent/rules/locator_strategy.md`
-3. Skill tương ứng trong `.agent/skills/`
+3. Skill tương ứng trong `.claude/skills/`
 4. Workflow tương ứng trong `.agent/workflows/`

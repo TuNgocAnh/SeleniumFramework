@@ -6,7 +6,7 @@ skills:
 
 # Workflow: Generate Requirements from Website Module
 
-> **BẮT BUỘC (MANDATORY SKILL):** Bạn PHẢI nạp và đọc kỹ nội dung của skill **`requirements-analyzer`** (tại `.agent/skills/requirements-analyzer/SKILL.md`) để biết định dạng chuẩn của tài liệu Requirements trước khi bắt đầu thực hiện tác vụ này.
+> **BẮT BUỘC (MANDATORY SKILL):** Bạn PHẢI nạp và đọc kỹ nội dung của skill **`requirements-analyzer`** (tại `.claude/skills/requirements-analyzer/SKILL.md`) để biết định dạng chuẩn của tài liệu Requirements trước khi bắt đầu thực hiện tác vụ này.
 
 Workflow này giúp bạn phân tích một module hoặc trang web được cung cấp và sinh ra tài liệu Yêu cầu (Requirements) chi tiết, chuẩn xác, phục vụ cho quá trình kiểm thử hoặc phát triển. 
 

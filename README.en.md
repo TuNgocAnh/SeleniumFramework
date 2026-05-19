@@ -154,8 +154,10 @@ HealableElement loginBtn = HealableElement.builder()
     .fallback(ByAttributeContainsStrategy.of("class", "submit"))
     .build();
 
-loginBtn.find().click();
+loginBtn.findWithWait().click();  // recommended for most cases
 ```
+
+### Strategies
 
 | Strategy | When to use |
 |----------|-------------|
@@ -163,7 +165,20 @@ loginBtn.find().click();
 | `ByRoleStrategy` | Button/link/textbox with stable `aria-label` or accessible name |
 | `ByAttributeContainsStrategy` | Last resort — fuzzy match on part of an attribute (e.g., `class*='submit'`) |
 
-> **Philosophy:** healing only kicks in when a fallback finds **exactly one** element — avoiding accidental clicks. Every heal event is logged at WARNING level and attached to Allure, so developers never silently miss a broken locator. See `src/test/java/com/selenium/tests/HealingDemoTests.java` for a runnable demo.
+### Two lookup modes
+
+| Method | Behavior | When to use |
+|--------|----------|-------------|
+| `find()` | Try primary + fallbacks **once** (~40ms), throws on failure | DOM is guaranteed to be ready (immediate check) |
+| `findWithWait(int seconds)` | Polls every 500ms, throws on timeout | DOM is still rendering / after navigation |
+| `findWithWait()` | Same as above, uses `explicitWait` from config (default 15s) | **Default for 90% of cases** |
+
+> **Philosophy:**
+> - Healing only kicks in when a fallback finds **exactly one** element → no accidental clicks.
+> - Healing does **not** replace explicit wait — it runs inside the wait. Each poll tick tries both primary and fallbacks, so whichever appears first wins. No wasted time.
+> - Every heal event is logged at WARNING level and attached to Allure, so developers never silently miss a broken locator.
+>
+> See `src/test/java/com/selenium/tests/HealingDemoTests.java` for a runnable demo.
 
 ---
 

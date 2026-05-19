@@ -118,7 +118,7 @@ Cung cấp file .doc / Jira ticket / requirement document → AI phân tích chi
 
 | Tài liệu                              | Đường dẫn                                          |
 | -------------------------------------- | --------------------------------------------------- |
-| Quy trình QA Automation               | `.agent/skills/qa-automation-engineer/SKILL.md`     |
+| Quy trình QA Automation               | `.claude/skills/qa-automation-engineer/SKILL.md`     |
 | Kế hoạch Automation                   | `plans/automation/QUICK_START.md`                   |
 
 ---

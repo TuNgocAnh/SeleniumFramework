@@ -11,8 +11,8 @@ skills:
 > AI inspect DOM/UI hierarchy thực tế, sinh locator ổn định theo priority chuẩn, verify uniqueness, trả về kết quả.
 
 > **BẮT BUỘC (MANDATORY):** Trước khi bắt đầu, PHẢI nạp và đọc kỹ:
-> - **Skill:** `.agent/skills/smart-locator-agent/SKILL.md` — Quy trình sinh locator
-> - **Skill:** `.agent/skills/ui-debug-agent/SKILL.md` — Quy trình inspect DOM
+> - **Skill:** `.claude/skills/smart-locator-agent/SKILL.md` — Quy trình sinh locator
+> - **Skill:** `.claude/skills/ui-debug-agent/SKILL.md` — Quy trình inspect DOM
 > - **Rule:** `.agent/rules/locator_strategy.md` — Bản đồ ưu tiên locator
 > - **Rule:** `.agent/rules/<framework>_rules.md` — Quy tắc riêng framework đang dùng
 

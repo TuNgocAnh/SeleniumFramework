@@ -345,6 +345,6 @@ Mỗi framework PHẢI bao gồm các thành phần sau:
 
 ## Tham chiếu
 
-- **Skill chi tiết:** `.agent/skills/framework-architect/SKILL.md`
+- **Skill chi tiết:** `.claude/skills/framework-architect/SKILL.md`
 - **Rules:** `.agent/rules/automation_rules.md`, `.agent/rules/locator_strategy.md`
 - **Workflow scaffold:** `/generate_automation_framework`

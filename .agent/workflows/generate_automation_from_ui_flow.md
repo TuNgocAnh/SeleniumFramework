@@ -8,7 +8,7 @@ skills:
 
 # Workflow: Sinh Automation từ UI Flow
 
-> **BẮT BUỘC (MANDATORY SKILL):** Bạn PHẢI nạp và đọc kỹ nội dung của skill **`ui-debug-agent`** (tại `.agent/skills/ui-debug-agent/SKILL.md`) trước khi bắt đầu. Ngoài ra tham khảo thêm skill **`smart-locator-agent`** để sinh locator ổn định và **`qa-automation-engineer`** cho quy tắc automation chung.
+> **BẮT BUỘC (MANDATORY SKILL):** Bạn PHẢI nạp và đọc kỹ nội dung của skill **`ui-debug-agent`** (tại `.claude/skills/ui-debug-agent/SKILL.md`) trước khi bắt đầu. Ngoài ra tham khảo thêm skill **`smart-locator-agent`** để sinh locator ổn định và **`qa-automation-engineer`** cho quy tắc automation chung.
 
 Workflow này giúp agent **thực thi trực tiếp** một chuỗi thao tác UI trên browser thật, thu thập locators từ DOM thực tế, và sinh automation scripts hoàn chỉnh — tất cả trong một luồng tự động, không cần manual test case có sẵn.
 
