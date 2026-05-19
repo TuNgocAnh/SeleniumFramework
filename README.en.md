@@ -51,6 +51,20 @@ SeleniumFramework/
 
 ## 3. Quick Start
 
+### Option 1 — Use `make` (recommended)
+
+```bash
+make help            # list all commands
+make doctor          # check environment (Java/Maven/Docker/Chrome)
+make smoke           # run smoke suite
+make test-one T=LoginTests#loginSuccess
+make grid-up && make grid-test && make grid-down
+```
+
+> **Windows note:** Use **Git Bash** (bundled with Git for Windows) — `make` does not work in cmd/PowerShell.
+
+### Option 2 — Maven directly
+
 ```powershell
 # Run default suite (testng.xml)
 mvn clean test

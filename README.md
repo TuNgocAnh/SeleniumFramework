@@ -51,6 +51,20 @@ SeleniumFramework/
 
 ## 3. Chạy test nhanh
 
+### Cách 1 — Dùng `make` (recommend, ngắn)
+
+```bash
+make help            # liệt kê toàn bộ commands
+make doctor          # check env (Java/Maven/Docker/Chrome)
+make smoke           # chạy smoke suite
+make test-one T=LoginTests#loginSuccess
+make grid-up && make grid-test && make grid-down
+```
+
+> **Windows note:** Mở bằng **Git Bash** (đi kèm Git for Windows) — `make` không chạy trong cmd/PowerShell thuần.
+
+### Cách 2 — Maven trực tiếp
+
 ```powershell
 # Chạy suite mặc định (testng.xml)
 mvn clean test
