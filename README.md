@@ -31,19 +31,26 @@ SeleniumFramework/
 │  ├─ main/java/com/selenium/framework/
 │  │  ├─ config/        # ConfigReader, CredentialsManager, FrameworkConstants
 │  │  ├─ driver/        # DriverFactory (Chrome/Edge/Firefox, Grid, mobile)
-│  │  ├─ pages/         # BasePage + các Page Object (LoginPage, ProductsPage…)
+│  │  ├─ pages/         # BasePage + Page Object (LoginPage, ProductsPage…)
+│  │  ├─ healing/       # HealableElement + strategies (self-healing locator)
 │  │  ├─ listeners/     # TestListener, RetryAnalyzer, RetryListener
 │  │  ├─ reports/       # ExtentManager, ExtentTestManager, ReportRetention
 │  │  ├─ utils/         # Wait/Screenshot/Excel/Json/Crypto/Assertions
 │  │  └─ exceptions/
 │  └─ test/
-│     ├─ java/com/selenium/tests/   # Test class (BaseTest, LoginTests, …)
+│     ├─ java/com/selenium/tests/   # Test class (BaseTest, LoginTests, HealingDemoTests…)
 │     └─ resources/
 │        ├─ config/      # config.properties, dev/stg/prod, credentials, log4j2.xml
-│        └─ testdata/    # login_data.json (+ Excel auto-gen). Có thể tách theo env: testdata/<env>/
-├─ testng.xml             # suite mặc định (smoke + regression)
-├─ testng-smoke.xml       # chỉ smoke
-├─ testng-parallel.xml    # chạy song song
+│        └─ testdata/    # login_data.json/.xlsx — có thể tách theo env: testdata/<env>/
+├─ docker/                 # Dockerfile + docker-compose.yml (Selenium Grid)
+├─ .claude/                # Claude Code AI assets (skills, commands, rules, workflows…)
+├─ .github/workflows/      # CI pipeline
+├─ testng.xml              # suite mặc định
+├─ testng-smoke.xml        # smoke only
+├─ testng-parallel.xml     # parallel execution
+├─ Makefile                # short aliases (make smoke, make grid-up, …)
+├─ .mcp.json               # Playwright MCP config (Claude Code DOM inspect)
+├─ CLAUDE.md               # Hướng dẫn cho Claude Code agent
 └─ pom.xml
 ```
 
