@@ -216,7 +216,32 @@ Agent sẽ tự navigate, inspect DOM thực tế, trả về locator + healable
 
 ---
 
-## 10. CI (GitHub Actions)
+## 10. Docker — Selenium Grid & Test Runner
+
+Repo có sẵn 2 cách dùng Docker (xem `docker/README.md` chi tiết):
+
+**Grid** — cross-browser parallel không cần cài Chrome/Firefox trên máy:
+
+```powershell
+docker compose -f docker/docker-compose.yml up -d
+mvn test "-DgridUrl=http://localhost:4444/wd/hub"
+docker compose -f docker/docker-compose.yml down
+```
+
+→ Grid console: http://localhost:4444. Mặc định 1 chrome node (4 session) + 1 firefox node (2 session). Scale qua `--scale chrome=3`.
+
+**Test runner image** — đóng gói cả Java + Maven + Chrome + code:
+
+```powershell
+docker build -t selenium-framework -f docker/Dockerfile .
+docker run --rm -v "$(pwd)/target:/app/target" selenium-framework
+```
+
+→ Tiện cho CI hoặc reviewer chạy thử không cần setup máy.
+
+---
+
+## 11. CI (GitHub Actions)
 
 Workflow: `.github/workflows/ci.yml` — tự chạy headless khi `push` / `pull_request`, upload Allure + Extent + log làm artifact.
 
@@ -224,7 +249,7 @@ Workflow: `.github/workflows/ci.yml` — tự chạy headless khi `push` / `pull
 
 ---
 
-## 11. Mẹo nhanh khi viết test mới
+## 12. Mẹo nhanh khi viết test mới
 
 1. Tạo Page Object trong `src/main/java/com/selenium/framework/pages/`, kế thừa `BasePage`.
 2. Tạo test class trong `src/test/java/com/selenium/tests/`, kế thừa `BaseTest`.

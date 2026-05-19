@@ -216,7 +216,32 @@ The agent will navigate, inspect the real DOM, and return a locator + healable f
 
 ---
 
-## 10. CI (GitHub Actions)
+## 10. Docker — Selenium Grid & Test Runner
+
+The repo ships two Docker workflows (see `docker/README.md` for details):
+
+**Grid** — cross-browser parallel execution without installing Chrome/Firefox locally:
+
+```powershell
+docker compose -f docker/docker-compose.yml up -d
+mvn test "-DgridUrl=http://localhost:4444/wd/hub"
+docker compose -f docker/docker-compose.yml down
+```
+
+→ Grid console at http://localhost:4444. Default: 1 chrome node (4 sessions) + 1 firefox node (2 sessions). Scale with `--scale chrome=3`.
+
+**Test runner image** — packages Java + Maven + Chrome + code into one image:
+
+```powershell
+docker build -t selenium-framework -f docker/Dockerfile .
+docker run --rm -v "$(pwd)/target:/app/target" selenium-framework
+```
+
+→ Convenient for CI or reviewers who want to try the framework without local setup.
+
+---
+
+## 11. CI (GitHub Actions)
 
 Workflow: `.github/workflows/ci.yml` — runs headless on `push` / `pull_request`, uploads Allure + Extent + logs as artifacts.
 
@@ -224,7 +249,7 @@ Workflow: `.github/workflows/ci.yml` — runs headless on `push` / `pull_request
 
 ---
 
-## 11. Tips for Writing New Tests
+## 12. Tips for Writing New Tests
 
 1. Create a Page Object in `src/main/java/com/selenium/framework/pages/`, extending `BasePage`.
 2. Create a test class in `src/test/java/com/selenium/tests/`, extending `BaseTest`.
