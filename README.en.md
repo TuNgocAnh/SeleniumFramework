@@ -142,7 +142,32 @@ java -cp target/classes com.selenium.framework.utils.CryptoUtils encrypt "passwo
 
 ---
 
-## 7. Soft Assertion
+## 7. Self-Healing Locator
+
+When the primary locator fails (e.g., the FE team changes an `id` or class), the framework automatically tries **fallback strategies** based on other characteristics of the element (visible text, role + aria-label, fuzzy attribute match...). If a strategy finds **exactly one** candidate, that element is used so the test still PASSes, while the heal event is logged as WARNING and attached to the Allure report so developers can fix the original locator.
+
+```java
+HealableElement loginBtn = HealableElement.builder()
+    .primary(By.id("login-button"))
+    .fallback(ByTextStrategy.of("Login"))
+    .fallback(ByRoleStrategy.of("button", "Login"))
+    .fallback(ByAttributeContainsStrategy.of("class", "submit"))
+    .build();
+
+loginBtn.find().click();
+```
+
+| Strategy | When to use |
+|----------|-------------|
+| `ByTextStrategy` | Element has stable visible text |
+| `ByRoleStrategy` | Button/link/textbox with stable `aria-label` or accessible name |
+| `ByAttributeContainsStrategy` | Last resort — fuzzy match on part of an attribute (e.g., `class*='submit'`) |
+
+> **Philosophy:** healing only kicks in when a fallback finds **exactly one** element — avoiding accidental clicks. Every heal event is logged at WARNING level and attached to Allure, so developers never silently miss a broken locator. See `src/test/java/com/selenium/tests/HealingDemoTests.java` for a runnable demo.
+
+---
+
+## 8. Soft Assertion
 
 Use when checking multiple things in one test without failing on the first assertion:
 
@@ -154,7 +179,7 @@ Assertions.assertAll(); // call at end of test to aggregate results
 
 ---
 
-## 8. CI (GitHub Actions)
+## 9. CI (GitHub Actions)
 
 Workflow: `.github/workflows/ci.yml` — runs headless on `push` / `pull_request`, uploads Allure + Extent + logs as artifacts.
 
@@ -162,7 +187,7 @@ Workflow: `.github/workflows/ci.yml` — runs headless on `push` / `pull_request
 
 ---
 
-## 9. Tips for Writing New Tests
+## 10. Tips for Writing New Tests
 
 1. Create a Page Object in `src/main/java/com/selenium/framework/pages/`, extending `BasePage`.
 2. Create a test class in `src/test/java/com/selenium/tests/`, extending `BaseTest`.

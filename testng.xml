@@ -15,6 +15,7 @@
             <class name="com.selenium.tests.ProductsTests"/>
             <class name="com.selenium.tests.LoginDataDrivenTests"/>
             <class name="com.selenium.tests.LoginExcelTests"/>
+            <class name="com.selenium.tests.HealingDemoTests"/>
         </classes>
     </test>
 </suite>

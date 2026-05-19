@@ -142,7 +142,32 @@ java -cp target/classes com.selenium.framework.utils.CryptoUtils encrypt "passwo
 
 ---
 
-## 7. Soft Assertion
+## 7. Self-Healing Locator
+
+Khi locator chính fail (vd: FE đổi `id`, đổi class), framework sẽ tự thử các **fallback strategy** dựa trên đặc điểm khác của element (text, role + aria-label, attribute fuzzy match...). Nếu một strategy tìm được **đúng 1 ứng viên**, element được dùng tạm để test PASS, đồng thời log + đính kèm Allure cảnh báo để dev cập nhật code.
+
+```java
+HealableElement loginBtn = HealableElement.builder()
+    .primary(By.id("login-button"))
+    .fallback(ByTextStrategy.of("Login"))
+    .fallback(ByRoleStrategy.of("button", "Login"))
+    .fallback(ByAttributeContainsStrategy.of("class", "submit"))
+    .build();
+
+loginBtn.find().click();
+```
+
+| Strategy | Khi dùng |
+|----------|----------|
+| `ByTextStrategy` | Element có visible text ổn định |
+| `ByRoleStrategy` | Button/link/textbox có `aria-label` hoặc accessible name ổn định |
+| `ByAttributeContainsStrategy` | Last resort — fuzzy match qua một phần của attribute (vd `class*='submit'`) |
+
+> **Triết lý:** healing chỉ kick-in khi fallback tìm thấy **chính xác 1** element — tránh click nhầm. Mỗi heal event đều được log WARNING + đính kèm Allure để dev không bỏ sót việc fix locator gốc. Xem demo tại `src/test/java/com/selenium/tests/HealingDemoTests.java`.
+
+---
+
+## 8. Soft Assertion
 
 Dùng khi muốn check nhiều thứ trong một test mà không fail ngay ở assertion đầu:
 
@@ -154,7 +179,7 @@ Assertions.assertAll(); // gọi cuối test để gom kết quả
 
 ---
 
-## 8. CI (GitHub Actions)
+## 9. CI (GitHub Actions)
 
 Workflow: `.github/workflows/ci.yml` — tự chạy headless khi `push` / `pull_request`, upload Allure + Extent + log làm artifact.
 
@@ -162,7 +187,7 @@ Workflow: `.github/workflows/ci.yml` — tự chạy headless khi `push` / `pull
 
 ---
 
-## 9. Mẹo nhanh khi viết test mới
+## 10. Mẹo nhanh khi viết test mới
 
 1. Tạo Page Object trong `src/main/java/com/selenium/framework/pages/`, kế thừa `BasePage`.
 2. Tạo test class trong `src/test/java/com/selenium/tests/`, kế thừa `BaseTest`.
