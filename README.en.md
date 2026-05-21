@@ -2,7 +2,9 @@
 
 > 🌐 **Vietnamese version:** [README.md](README.md) — _When editing this file, please update `README.md` to keep both in sync._
 
-A web test automation framework built with **Java 21 + Maven + TestNG**, following the **Page Object Model (POM)** pattern. Supports cross-browser execution, parallel runs, data-driven testing (JSON/Excel), Selenium Grid, mobile emulation, Extent + Allure reporting, file logging, and encrypted credentials.
+A web test automation framework built with **Java 21 + Maven + TestNG**, following the **Page Object Model (POM)** pattern. Supports cross-browser execution, parallel runs, data-driven testing (JSON/Excel), Selenium Grid, mobile emulation, Extent + Allure reporting, file logging, and encrypted credentials. Also ships with REST Assured for API testing and data setup, JaCoCo coverage, Spotless code style, and a Slack notifier for CI.
+
+> 📝 See [CHANGELOG.md](CHANGELOG.md) for recent changes.
 
 ---
 
@@ -29,6 +31,7 @@ mvn -version
 SeleniumFramework/
 ├─ src/
 │  ├─ main/java/com/selenium/framework/
+│  │  ├─ api/           # ApiClient, BaseApi (REST Assured for API tests / data setup)
 │  │  ├─ config/        # ConfigReader, CredentialsManager, FrameworkConstants
 │  │  ├─ driver/        # DriverFactory (Chrome/Edge/Firefox, Grid, mobile)
 │  │  ├─ pages/         # BasePage + Page Objects (LoginPage, ProductsPage…)
@@ -51,6 +54,7 @@ SeleniumFramework/
 ├─ Makefile                # short aliases (make smoke, make grid-up, …)
 ├─ .mcp.json               # Playwright MCP config (Claude Code DOM inspect)
 ├─ CLAUDE.md               # Claude Code agent guidance
+├─ CHANGELOG.md            # Change history (Keep a Changelog)
 └─ pom.xml
 ```
 
@@ -124,6 +128,8 @@ mvn test "-DmobileEmulation=true" "-DmobileDevice=Pixel 7"
 | `chromeVersion` / `edgeVersion` / `firefoxVersion` | — | pin browser version |
 | `mobileEmulation` | false | enable mobile emulation (Chrome) |
 | `mobileDevice` | Pixel 7 | emulated device name |
+| `apiBaseUrl` | — | base URL for the REST Assured client |
+| `apiTimeoutMs` | 30000 | API request timeout (ms) |
 
 > Any key can be overridden via `-Dkey=value` when running `mvn`.
 
@@ -205,13 +211,21 @@ loginBtn.findWithWait().click();  // recommended for most cases
 
 ## 8. Soft Assertion
 
-Use when checking multiple things in one test without failing on the first assertion:
+Use when checking multiple things in one test without failing on the first assertion. `Assertions` supports two styles:
 
 ```java
+// Style 1 — direct calls (concise)
+Assertions.assertEquals(actual, expected, "msg");
+Assertions.assertTrue(condition, "describe expected behavior");
+Assertions.assertNotNull(element, "Element must exist");
+
+// Style 2 — grab the SoftAssert instance (when you need TestNG's native API)
 Assertions.soft().assertEquals(actual, expected, "msg");
-Assertions.soft().assertTrue(condition);
-Assertions.assertAll(); // call at end of test to aggregate results
+
+Assertions.assertAll(); // REQUIRED at end of test to aggregate & raise accumulated failures
 ```
+
+> Each thread has its own `SoftAssert` instance — safe for parallel runs.
 
 ---
 
@@ -262,15 +276,60 @@ docker run --rm -v "$(pwd)/target:/app/target" selenium-framework
 
 ---
 
-## 11. CI (GitHub Actions)
+## 11. API Testing (REST Assured)
 
-Workflow: `.github/workflows/ci.yml` — runs headless on `push` / `pull_request`, uploads Allure + Extent + logs as artifacts.
+Use `ApiClient` / `BaseApi` to call APIs — useful both for pure API tests and for fast data setup/cleanup before/after UI tests.
 
-> If using `enc:` passwords, add `CRED_KEY` to repo secrets.
+```java
+public class UserApi extends BaseApi {
+    public Response createUser(String email) {
+        return post("/users", Map.of("email", email));
+    }
+}
+
+// In a test
+String email = DataGenerator.generateEmail("login");
+new UserApi().createUser(email);    // seed data via API
+loginPage.login(email, "Pass@123"); // then exercise the UI
+```
+
+Configure via `apiBaseUrl` / `apiTimeoutMs` in `config.properties`, or override with `-DapiBaseUrl=...` when running `mvn`.
 
 ---
 
-## 12. Tips for Writing New Tests
+## 12. Code Quality — Spotless & JaCoCo
+
+**Spotless** (Google Java Format) — auto-formats code:
+
+```powershell
+mvn spotless:check   # CI check
+mvn spotless:apply   # auto-fix
+```
+
+**JaCoCo** — produces a coverage report at `target/site/jacoco/index.html`:
+
+```powershell
+mvn verify           # runs tests + generates the report
+```
+
+---
+
+## 13. CI (GitHub Actions)
+
+Workflow: `.github/workflows/ci.yml` — runs headless on `push` / `pull_request`, uploads Allure + Extent + logs as artifacts.
+
+**Configurable secrets (repo Settings → Secrets and variables → Actions):**
+
+| Secret | When needed | Purpose |
+|---|---|---|
+| `CRED_KEY` | Using `enc:` passwords | Decrypt credentials |
+| `SLACK_WEBHOOK_URL` | Want Slack notifications on CI failure | Notifier step auto-skips if unset |
+
+**Dependabot** — `.github/dependabot.yml` opens weekly PRs to update Maven dependencies (grouped by selenium / testing / reporting), GitHub Actions, and Docker.
+
+---
+
+## 14. Tips for Writing New Tests
 
 1. Create a Page Object in `src/main/java/com/selenium/framework/pages/`, extending `BasePage`.
 2. Create a test class in `src/test/java/com/selenium/tests/`, extending `BaseTest`.

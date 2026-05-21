@@ -2,7 +2,9 @@
 
 > 🌐 **English version:** [README.en.md](README.en.md) — _Khi sửa file này, vui lòng update cả `README.en.md` để giữ đồng bộ._
 
-Framework tự động kiểm thử web viết bằng **Java 21 + Maven + TestNG**, áp dụng mô hình **Page Object (POM)**. Hỗ trợ chạy đa trình duyệt, song song, data-driven (JSON/Excel), Selenium Grid, mobile emulation, báo cáo Extent + Allure, log file và mã hoá thông tin đăng nhập.
+Framework tự động kiểm thử web viết bằng **Java 21 + Maven + TestNG**, áp dụng mô hình **Page Object (POM)**. Hỗ trợ chạy đa trình duyệt, song song, data-driven (JSON/Excel), Selenium Grid, mobile emulation, báo cáo Extent + Allure, log file và mã hoá thông tin đăng nhập. Có thêm REST Assured để test API và setup data, JaCoCo coverage, Spotless code style, Slack notifier cho CI.
+
+> 📝 Xem [CHANGELOG.md](CHANGELOG.md) để biết các thay đổi gần nhất.
 
 ---
 
@@ -29,6 +31,7 @@ mvn -version
 SeleniumFramework/
 ├─ src/
 │  ├─ main/java/com/selenium/framework/
+│  │  ├─ api/           # ApiClient, BaseApi (REST Assured cho API test/data setup)
 │  │  ├─ config/        # ConfigReader, CredentialsManager, FrameworkConstants
 │  │  ├─ driver/        # DriverFactory (Chrome/Edge/Firefox, Grid, mobile)
 │  │  ├─ pages/         # BasePage + Page Object (LoginPage, ProductsPage…)
@@ -51,6 +54,7 @@ SeleniumFramework/
 ├─ Makefile                # short aliases (make smoke, make grid-up, …)
 ├─ .mcp.json               # Playwright MCP config (Claude Code DOM inspect)
 ├─ CLAUDE.md               # Hướng dẫn cho Claude Code agent
+├─ CHANGELOG.md            # Lịch sử thay đổi (Keep a Changelog)
 └─ pom.xml
 ```
 
@@ -124,6 +128,8 @@ mvn test "-DmobileEmulation=true" "-DmobileDevice=Pixel 7"
 | `chromeVersion` / `edgeVersion` / `firefoxVersion` | — | pin version trình duyệt |
 | `mobileEmulation` | false | bật mobile emulation (Chrome) |
 | `mobileDevice` | Pixel 7 | tên thiết bị giả lập |
+| `apiBaseUrl` | — | base URL cho REST Assured client |
+| `apiTimeoutMs` | 30000 | timeout cho API request (ms) |
 
 > Mọi key đều có thể override bằng `-Dkey=value` khi chạy `mvn`.
 
@@ -205,13 +211,21 @@ loginBtn.findWithWait().click();  // dùng cho hầu hết trường hợp
 
 ## 8. Soft Assertion
 
-Dùng khi muốn check nhiều thứ trong một test mà không fail ngay ở assertion đầu:
+Dùng khi muốn check nhiều thứ trong một test mà không fail ngay ở assertion đầu. `Assertions` cung cấp 2 cách dùng:
 
 ```java
+// Cách 1 — gọi trực tiếp (ngắn)
+Assertions.assertEquals(actual, expected, "msg");
+Assertions.assertTrue(condition, "mô tả expected behavior");
+Assertions.assertNotNull(element, "Element phải tồn tại");
+
+// Cách 2 — lấy instance SoftAssert (khi cần API gốc của TestNG)
 Assertions.soft().assertEquals(actual, expected, "msg");
-Assertions.soft().assertTrue(condition);
-Assertions.assertAll(); // gọi cuối test để gom kết quả
+
+Assertions.assertAll(); // BẮT BUỘC gọi cuối test để gom & raise lỗi tích luỹ
 ```
+
+> Mỗi thread có 1 instance `SoftAssert` riêng — an toàn khi chạy parallel.
 
 ---
 
@@ -262,15 +276,60 @@ docker run --rm -v "$(pwd)/target:/app/target" selenium-framework
 
 ---
 
-## 11. CI (GitHub Actions)
+## 11. API Testing (REST Assured)
 
-Workflow: `.github/workflows/ci.yml` — tự chạy headless khi `push` / `pull_request`, upload Allure + Extent + log làm artifact.
+Dùng `ApiClient` / `BaseApi` để gọi API — phục vụ cả API test thuần lẫn setup/cleanup data nhanh trước/sau UI test.
 
-> Nếu dùng password dạng `enc:`, thêm secret `CRED_KEY` trong repo settings.
+```java
+public class UserApi extends BaseApi {
+    public Response createUser(String email) {
+        return post("/users", Map.of("email", email));
+    }
+}
+
+// Trong test
+String email = DataGenerator.generateEmail("login");
+new UserApi().createUser(email);    // setup data qua API
+loginPage.login(email, "Pass@123"); // sau đó test UI
+```
+
+Cấu hình qua `apiBaseUrl` / `apiTimeoutMs` ở `config.properties`, hoặc override bằng `-DapiBaseUrl=...` khi chạy `mvn`.
 
 ---
 
-## 12. Mẹo nhanh khi viết test mới
+## 12. Code Quality — Spotless & JaCoCo
+
+**Spotless** (Google Java Format) — định dạng code tự động:
+
+```powershell
+mvn spotless:check   # CI check
+mvn spotless:apply   # tự sửa
+```
+
+**JaCoCo** — sinh báo cáo coverage tại `target/site/jacoco/index.html`:
+
+```powershell
+mvn verify           # chạy test + sinh báo cáo
+```
+
+---
+
+## 13. CI (GitHub Actions)
+
+Workflow: `.github/workflows/ci.yml` — tự chạy headless khi `push` / `pull_request`, upload Allure + Extent + log làm artifact.
+
+**Secrets có thể cấu hình (repo Settings → Secrets and variables → Actions):**
+
+| Secret | Khi nào cần | Mục đích |
+|---|---|---|
+| `CRED_KEY` | Dùng password dạng `enc:` | Giải mã credentials |
+| `SLACK_WEBHOOK_URL` | Muốn nhận thông báo Slack khi CI fail | Step notifier tự skip nếu chưa set |
+
+**Dependabot** — `.github/dependabot.yml` tự mở PR cập nhật weekly cho Maven (group theo selenium / testing / reporting), GitHub Actions và Docker.
+
+---
+
+## 14. Mẹo nhanh khi viết test mới
 
 1. Tạo Page Object trong `src/main/java/com/selenium/framework/pages/`, kế thừa `BasePage`.
 2. Tạo test class trong `src/test/java/com/selenium/tests/`, kế thừa `BaseTest`.
