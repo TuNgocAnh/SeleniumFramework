@@ -51,7 +51,7 @@ jobs:
 
       - name: Upload Allure results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: allure-results
           path: target/allure-results
@@ -59,7 +59,7 @@ jobs:
 
       - name: Upload Extent report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: extent-report
           path: reports/
@@ -67,7 +67,7 @@ jobs:
 
       - name: Upload logs
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: logs
           path: logs/
