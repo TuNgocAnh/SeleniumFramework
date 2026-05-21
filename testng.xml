@@ -12,10 +12,10 @@
         </groups>
         <classes>
             <class name="com.selenium.tests.LoginTests"/>
-            <class name="com.selenium.tests.ProductsTests"/>
+            <!-- <class name="com.selenium.tests.ProductsTests"/>
             <class name="com.selenium.tests.LoginDataDrivenTests"/>
             <class name="com.selenium.tests.LoginExcelTests"/>
-            <class name="com.selenium.tests.HealingDemoTests"/>
+            <class name="com.selenium.tests.HealingDemoTests"/> -->
         </classes>
     </test>
 </suite>

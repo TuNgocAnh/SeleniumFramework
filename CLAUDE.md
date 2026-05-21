@@ -43,6 +43,7 @@ mvn allure:serve
 - Read config via `ConfigReader`; do not hardcode values.
 - Read credentials via `CredentialsManager` (supports plaintext / `b64:` / `enc:`).
 - Data-driven tests: use `JsonUtils` or `ExcelUtils` to read from `src/test/resources/testdata/`.
+- Java code style: 1 space quanh `=`, KHÔNG align cột (theo Google Java Style). Áp dụng cho khai báo locator, field, constant.
 
 ## Safety Rules (CRITICAL)
 
