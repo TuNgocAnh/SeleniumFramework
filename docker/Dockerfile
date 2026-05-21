@@ -3,7 +3,7 @@
 # Run:   docker run --rm -v "$(pwd)/target:/app/target" selenium-framework \
 #               mvn test "-Dsurefire.suiteXmlFile=testng-smoke.xml"
 
-FROM maven:3.9.9-eclipse-temurin-21
+FROM maven:3.9.15-eclipse-temurin-26
 
 # Install Chrome + headless dependencies
 RUN apt-get update && apt-get install -y \
