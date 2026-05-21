@@ -11,21 +11,22 @@ import org.testng.annotations.Parameters;
 
 public abstract class BaseTest {
 
-    protected static final Logger log = LogManager.getLogger(BaseTest.class);
+  protected static final Logger log = LogManager.getLogger(BaseTest.class);
 
-    @BeforeMethod(alwaysRun = true)
-    @Parameters({"browser"})
-    public void setUp(@Optional String browserParam) {
-        String browser = (browserParam != null && !browserParam.isBlank())
-                ? browserParam
-                : ConfigReader.get("browser", "chrome");
-        log.info("Khởi tạo driver: {}", browser);
-        DriverFactory.initDriver(browser);
-        DriverFactory.getDriver().get(ConfigReader.get("baseUrl"));
-    }
+  @BeforeMethod(alwaysRun = true)
+  @Parameters({"browser"})
+  public void setUp(@Optional String browserParam) {
+    String browser =
+        (browserParam != null && !browserParam.isBlank())
+            ? browserParam
+            : ConfigReader.get("browser", "chrome");
+    log.info("Khởi tạo driver: {}", browser);
+    DriverFactory.initDriver(browser);
+    DriverFactory.getDriver().get(ConfigReader.get("baseUrl"));
+  }
 
-    @AfterMethod(alwaysRun = true)
-    public void tearDown() {
-        DriverFactory.quitDriver();
-    }
+  @AfterMethod(alwaysRun = true)
+  public void tearDown() {
+    DriverFactory.quitDriver();
+  }
 }
