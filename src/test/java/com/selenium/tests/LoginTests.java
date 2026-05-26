@@ -38,4 +38,17 @@ public class LoginTests extends BaseTest {
         new LoginPage().login(CredentialsManager.user("locked"), CredentialsManager.pass("locked"));
     Assert.assertTrue(login.getErrorMessage().toLowerCase().contains("locked out"));
   }
+
+  @Test(
+      groups = {"smoke", "regression"},
+      description = "SAUCE_LOGIN_TC_03 — Username trống hiển thị validation")
+  public void loginEmptyUsername() {
+    LoginPage login = new LoginPage().login("", "secret_sauce");
+    Assert.assertTrue(
+        login.isErrorDisplayed(), "Phải hiển thị error banner khi bỏ trống username");
+    Assert.assertEquals(
+        login.getErrorMessage(),
+        "Epic sadface: Username is required",
+        "Nội dung error phải đúng quy định nghiệp vụ");
+  }
 }

@@ -8,6 +8,7 @@ public class ProductsPage extends BasePage {
 
   private final By title = By.cssSelector(".title");
   private final By cartBadge = By.cssSelector(".shopping_cart_badge");
+  private final By cartIcon = By.cssSelector("[data-test='shopping-cart-link']");
   private final By addBackpack = By.id("add-to-cart-sauce-labs-backpack");
 
   @Step("Kiểm tra trang Products đã load")
@@ -22,8 +23,20 @@ public class ProductsPage extends BasePage {
     return this;
   }
 
+  @Step("Thêm sản phẩm vào giỏ theo slug: {0}")
+  public ProductsPage addToCart(String slug) {
+    click(By.cssSelector("[data-test='add-to-cart-" + slug + "']"));
+    return this;
+  }
+
   @Step("Lấy số lượng cart badge")
   public String getCartCount() {
     return getText(cartBadge);
+  }
+
+  @Step("Mở giỏ hàng")
+  public CartPage openCart() {
+    click(cartIcon);
+    return new CartPage();
   }
 }

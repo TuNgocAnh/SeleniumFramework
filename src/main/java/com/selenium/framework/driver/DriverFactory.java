@@ -86,7 +86,16 @@ public final class DriverFactory {
   private static ChromeOptions chromeOptions(boolean headless, boolean mobile) {
     ChromeOptions opts = new ChromeOptions();
     opts.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-    opts.addArguments("--remote-allow-origins=*", "--disable-notifications");
+    opts.addArguments(
+        "--remote-allow-origins=*",
+        "--disable-notifications",
+        "--disable-features=PasswordLeakDetection,AutofillServerCommunication,PasswordCheck,SafeBrowsingEnhancedProtection",
+        "--disable-save-password-bubble");
+    Map<String, Object> prefs = new HashMap<>();
+    prefs.put("credentials_enable_service", false);
+    prefs.put("profile.password_manager_enabled", false);
+    prefs.put("profile.password_manager_leak_detection", false);
+    opts.setExperimentalOption("prefs", prefs);
     if (headless)
       opts.addArguments(
           "--headless=new", "--window-size=1920,1080", "--no-sandbox", "--disable-dev-shm-usage");
@@ -100,7 +109,16 @@ public final class DriverFactory {
 
   private static EdgeOptions edgeOptions(boolean headless) {
     EdgeOptions opts = new EdgeOptions();
-    opts.addArguments("--remote-allow-origins=*", "--disable-notifications");
+    opts.addArguments(
+        "--remote-allow-origins=*",
+        "--disable-notifications",
+        "--disable-features=PasswordLeakDetection,AutofillServerCommunication,PasswordCheck,SafeBrowsingEnhancedProtection",
+        "--disable-save-password-bubble");
+    Map<String, Object> prefs = new HashMap<>();
+    prefs.put("credentials_enable_service", false);
+    prefs.put("profile.password_manager_enabled", false);
+    prefs.put("profile.password_manager_leak_detection", false);
+    opts.setExperimentalOption("prefs", prefs);
     if (headless) opts.addArguments("--headless=new", "--window-size=1920,1080");
     return opts;
   }
