@@ -5,14 +5,23 @@ import com.selenium.framework.pages.CartPage;
 import com.selenium.framework.pages.CheckoutStepOnePage;
 import com.selenium.framework.pages.LoginPage;
 import com.selenium.framework.pages.ProductsPage;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+@Epic("Saucedemo")
+@Feature("Cart")
 public class CartTests extends BaseTest {
 
   @Test(
       groups = {"smoke", "regression"},
       description = "SAUCE_CART_TC_05 — Checkout từ giỏ có sản phẩm chuyển sang step 1")
+  @Story("Checkout entry point")
+  @Severity(SeverityLevel.CRITICAL)
   public void checkoutFromCartWithItem() {
     new LoginPage().login(CredentialsManager.user("standard"), CredentialsManager.pass("standard"));
     ProductsPage products = new ProductsPage();
