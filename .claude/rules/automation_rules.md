@@ -14,13 +14,24 @@
 ## 2. Sinh Dữ Liệu Test (Test Data)
 
 - Tất cả trường yêu cầu unique (Email, Username, Mã KH...) **phải sinh động**, không hardcode.
-- Sử dụng UUID, Timestamp hoặc thư viện Faker.
+- **BẮT BUỘC dùng `DataGenerator` utility** của framework — không tự viết logic random rời rạc:
+  ```java
+  // ✅ ĐÚNG
+  String email = DataGenerator.generateEmail("login");
+  String firstName = DataGenerator.generateFirstName("checkout");
+  String zip = DataGenerator.generatePostalCode();
+
+  // ❌ SAI — hardcoded
+  String email = "test@email.com";
+  String firstName = "John";
+  ```
 - Dữ liệu phải **traceable** — nhìn vào DB biết ngay test nào tạo ra:
   ```
-  Format: [prefix]_[testName]_[timestamp]_[random]
-  Ví dụ:  auto_createCustomer_20260402_A3F2@test.com
+  Format: auto_<testNameHint>_<timestamp>[_<random4>]
+  Ví dụ:  auto_createCustomer_1748313600123@test.com
   ```
 - Hỗ trợ chạy parallel: mỗi test method có data riêng biệt, không conflict.
+- **Code review checklist:** grep `@test.com`, `@gmail.com`, `"John"`, `"Test User"` hardcoded → reject PR.
 
 ## 3. Chất Lượng Code
 
@@ -73,7 +84,74 @@
   await expect(page.getByText('Đăng nhập thành công')).toBeVisible();
   ```
 
-## 7. Tính Độc Lập Của Test (Test Independence)
+### 6.1. Hard vs Soft Assertion — khi nào dùng cái nào?
+
+| Tình huống | Loại | Lý do |
+|---|---|---|
+| Setup/precondition (page load, login, navigate) | **Hard** `Assert.assertX(...)` | Fail là test sau vô nghĩa → stop ngay |
+| Verify nhiều field trên cùng 1 trạng thái (subtotal + tax + total) | **Soft** `Assertions.assertX(...)` | Gom info, fix 1 lần thay vì nhiều run |
+| Verify URL chuyển trang sau action | **Hard** | Sai URL → các step sau sai page |
+| Multi-element visibility check cuối test | **Soft** | Báo cáo đầy đủ trong 1 run |
+
+### 6.2. Soft Assertion — Pattern bắt buộc (Java)
+
+```java
+Assertions.assertEquals(actual1, expected1, "msg1");
+Assertions.assertEquals(actual2, expected2, "msg2");
+Assertions.assertEquals(actual3, expected3, "msg3");
+Assertions.assertAll();  // ← BẮT BUỘC ở cuối, raise mọi failure tích luỹ
+```
+
+**Quên `assertAll()` → test PASS sai dù có fail tích luỹ.**
+
+Framework đã có safety net trong `BaseTest.tearDown()`:
+```java
+@AfterMethod(alwaysRun = true)
+public void tearDown() {
+  try { Assertions.assertAll(); }
+  finally { DriverFactory.quitDriver(); }
+}
+```
+→ Mọi test class extend `BaseTest` tự động được bảo vệ khỏi pitfall "quên assertAll".
+
+## 7. Reporting — Allure Metadata (BẮT BUỘC)
+
+Mọi test class + method **PHẢI** có annotation Allure để report nhóm đúng hierarchy. Test không có metadata sẽ thành **orphan** ngoài hierarchy → khó filter/review.
+
+### 7.1. Class level
+
+```java
+@Epic("<Project name>")      // luôn cùng giá trị toàn project, vd "Saucedemo"
+@Feature("<Module name>")    // tên module, vd "Login" / "Cart" / "Checkout"
+public class LoginTests extends BaseTest { ... }
+```
+
+### 7.2. Method level
+
+```java
+@Test(...)
+@Story("<scenario nhóm con>")        // vd "Happy login" / "Invalid credentials"
+@Severity(SeverityLevel.BLOCKER)     // ánh xạ Priority test case → Severity
+public void loginSuccess() { ... }
+```
+
+### 7.3. Mapping Priority ↔ Severity
+
+| TC Priority | `SeverityLevel` | Khi dùng |
+|---|---|---|
+| P1 (smoke, blocker) | `BLOCKER` | Fail = không release |
+| P1 critical path | `CRITICAL` | Fail = feature chính hỏng |
+| P2 (regression) | `CRITICAL` / `NORMAL` | — |
+| P3 (weekly) | `NORMAL` / `MINOR` | — |
+| P4 (on-demand) | `MINOR` / `TRIVIAL` | — |
+
+### 7.4. Code review checklist
+
+- ❌ Test class thiếu `@Epic` + `@Feature` → reject
+- ❌ Test method thiếu `@Severity` → warn (mặc định Allure = NORMAL, không filter chính xác)
+- ❌ Tất cả test cùng `@Severity(NORMAL)` → không có priority → reject
+
+## 8. Tính Độc Lập Của Test (Test Independence)
 
 - Mỗi test case phải **độc lập** — không phụ thuộc kết quả test khác.
 - Setup/teardown rõ ràng (`@BeforeMethod/@AfterMethod` hoặc `beforeEach/afterEach`).

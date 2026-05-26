@@ -112,3 +112,66 @@ public class LoginTest extends BaseTest {
   Assert.assertTrue(element.isDisplayed(), "Element phải hiển thị trên trang");
   ```
 - Mỗi test method phải có ít nhất **1 assertion** ở cuối
+- Multi-field verification → dùng soft `Assertions` (xem `automation_rules.md` Section 6.2).
+
+## 6. Self-Healing Locator (HealableElement)
+
+Framework cung cấp `HealableElement` để **tự fallback** khi locator chính break do FE đổi DOM. Áp dụng cho element **tần suất cao + risk cao**, không apply tràn lan.
+
+### 6.1. Khi nào DÙNG `HealableElement`?
+
+✅ Element **critical path:**
+- Button thao tác chính: Login, Submit, Checkout, Finish, Add to cart
+- Input bắt buộc trong form quan trọng: username, password, email
+- Link navigation then chốt: Logout, Home
+
+❌ KHÔNG dùng:
+- Title/heading dùng cho assertion → fail rõ ràng là OK, không cần heal
+- Footer link (Twitter, Facebook) → low business value
+- Element trong dialog hiếm dùng
+
+### 6.2. Pattern chuẩn
+
+Khai báo `HealableElement` field trong Page class, gọi `findWithWait().click()` trong action method:
+
+```java
+public class LoginPage extends BasePage {
+
+  private final By userInput = By.id("user-name");
+  private final By passInput = By.id("password");
+
+  // Healable cho Login button — element critical
+  private final HealableElement loginBtnHeal =
+      HealableElement.builder()
+          .primary(By.id("login-button"))                              // ① thử cái này trước
+          .fallback(ByRoleStrategy.of("button", "Login"))              // ② nếu (①) fail
+          .fallback(ByAttributeContainsStrategy.of("value", "Login"))  // ③ nếu (②) fail
+          .build();
+
+  public LoginPage login(String user, String pass) {
+    type(userInput, user);
+    type(passInput, pass);
+    loginBtnHeal.findWithWait().click();   // ← auto retry với 3 strategy
+    return this;
+  }
+}
+```
+
+### 6.3. 3 Strategy có sẵn
+
+| Strategy | Khi dùng | Ví dụ |
+|---|---|---|
+| `ByTextStrategy.of("Submit")` | Element có visible text ổn định | Button hiển thị chữ "Submit" |
+| `ByRoleStrategy.of("button", "Login")` | Element có role + accessible name | `<button aria-label="Login">` hoặc `<input type="submit" value="Login">` |
+| `ByAttributeContainsStrategy.of("class", "submit-btn")` | Match một phần attribute | Khi class đổi `submit-btn-v2`, vẫn match "submit-btn" |
+
+### 6.4. NGHIÊM CẤM
+
+- ❌ Khai báo `HealableElement` không có ít nhất 1 fallback — `.builder().primary(X).build()` vô nghĩa.
+- ❌ Apply tràn lan cho mọi element — chỉ critical path.
+- ❌ Giữ lại field `By` cũ sau khi thay bằng healable — phải dọn dead code.
+- ❌ Dùng strategy nhạy cảm DOM structure trong fallback (vd CSS `nth-child`) — heal sẽ break theo.
+
+### 6.5. Demo tham khảo
+
+Xem `src/test/java/com/selenium/tests/HealingDemoTests.java` — 4 scenario heal: by text, by attribute, exhausted, with-wait.
