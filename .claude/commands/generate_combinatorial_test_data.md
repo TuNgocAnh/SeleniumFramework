@@ -13,7 +13,7 @@ skills:
 > **BẮT BUỘC (MANDATORY):** Trước khi bắt đầu, PHẢI nạp và đọc kỹ:
 > - **Skill:** `.claude/skills/test-data-generator/SKILL.md` — Quy tắc sinh data (xem phần Multi-Step Pipeline)
 > - **Skill:** `.claude/skills/ui-debug-agent/SKILL.md` — Inspect DOM khi chạy browser
-> - **Workflow:** `.claude/workflows/generate_cross_module_test_plan.md` — Hiểu cấu trúc ma trận đầu vào
+> - **Command:** `.claude/commands/generate_cross_module_test_plan.md` — Hiểu cấu trúc ma trận đầu vào (gọi bằng `/generate_cross_module_test_plan`)
 
 ---
 

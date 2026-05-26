@@ -2,7 +2,7 @@
 
 > 🌐 **English version:** [README.en.md](README.en.md) — _Khi sửa file này, vui lòng update cả `README.en.md` để giữ đồng bộ._
 
-Framework tự động kiểm thử web viết bằng **Java 21 + Maven + TestNG**, áp dụng mô hình **Page Object (POM)**. Hỗ trợ chạy đa trình duyệt, song song, data-driven (JSON/Excel), Selenium Grid, mobile emulation, báo cáo Extent + Allure, log file và mã hoá thông tin đăng nhập. Có thêm REST Assured để test API và setup data, JaCoCo coverage, Spotless code style, Slack notifier cho CI.
+Framework tự động kiểm thử web viết bằng **Java 21 + Maven + TestNG**, áp dụng mô hình **Page Object (POM)**. Hỗ trợ chạy đa trình duyệt, song song, data-driven (JSON/Excel), Selenium Grid, mobile emulation, báo cáo Extent + Allure, log file và mã hoá thông tin đăng nhập. Có thêm REST Assured để test API và setup data, JaCoCo coverage, Spotless code style, và Slack notifier cho CI.
 
 > 📝 Xem [CHANGELOG.md](CHANGELOG.md) để biết các thay đổi gần nhất.
 
@@ -231,7 +231,7 @@ Assertions.assertAll(); // BẮT BUỘC gọi cuối test để gom & raise lỗ
 
 ## 9. MCP — Inspect DOM thật từ Claude Code
 
-Repo đã config sẵn **Playwright MCP server** trong `.mcp.json`. Khi dùng Claude Code, các slash command như `/locator-gen` có thể mở browser thật, capture DOM accessibility tree, click/type — không còn đoán locator nữa.
+Repo đã config sẵn **Playwright MCP server** trong `.mcp.json`. Khi dùng Claude Code, các slash command như `/generate_locator` có thể mở browser thật, capture DOM accessibility tree, click/type — không còn đoán locator nữa.
 
 **Cài 1 lần:**
 
@@ -244,7 +244,7 @@ Sau đó reload Claude Code (`Ctrl+Shift+P` → "Developer: Reload Window"). Cá
 **Test nhanh:**
 
 ```
-/locator-gen nút "Add to cart" trên https://www.saucedemo.com
+/generate_locator nút "Add to cart" trên https://www.saucedemo.com
 ```
 
 Agent sẽ tự navigate, inspect DOM thực tế, trả về locator + healable fallback chính xác.
@@ -324,8 +324,6 @@ Workflow: `.github/workflows/ci.yml` — tự chạy headless khi `push` / `pull
 |---|---|---|
 | `CRED_KEY` | Dùng password dạng `enc:` | Giải mã credentials |
 | `SLACK_WEBHOOK_URL` | Muốn nhận thông báo Slack khi CI fail | Step notifier tự skip nếu chưa set |
-
-**Dependabot** — `.github/dependabot.yml` tự mở PR cập nhật weekly cho Maven (group theo selenium / testing / reporting), GitHub Actions và Docker.
 
 ---
 

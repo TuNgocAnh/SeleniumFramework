@@ -11,7 +11,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - REST Assured API testing utilities (`framework.api.ApiClient`, `BaseApi`) and `apiBaseUrl` / `apiTimeoutMs` config keys.
 - Spotless Maven plugin (Google Java Format) for code style enforcement.
 - JaCoCo coverage plugin wired into Surefire — run `mvn verify` to produce `target/site/jacoco/`.
-- GitHub Dependabot config for weekly Maven and GitHub Actions updates.
 - Soft-assertion convenience methods on `framework.utils.Assertions` (`assertEquals`, `assertTrue`, `assertFalse`, `assertNotNull`, `fail`).
 - Slack notifier step in CI workflow (triggers on failure when `SLACK_WEBHOOK_URL` secret is set).
 - `CHANGELOG.md` (this file).

@@ -45,6 +45,45 @@ mvn allure:serve
 - Data-driven tests: use `JsonUtils` or `ExcelUtils` to read from `src/test/resources/testdata/`.
 - Java code style: 1 space quanh `=`, KHÔNG align cột (theo Google Java Style). Áp dụng cho khai báo locator, field, constant.
 
+## Browser Rules (Playwright MCP)
+
+Khi dùng Playwright MCP để inspect DOM / debug UI, **bắt buộc** theo thứ tự:
+
+```
+navigate → resize(1920×1080) → wait_for(page_load) → snapshot → interact → screenshot(on_fail)
+```
+
+- KHÔNG gọi `browser_navigate` lại nếu đã ở đúng trang (tránh reload mất state).
+- LUÔN `browser_resize(1920, 1080)` ngay sau navigate — đảm bảo desktop viewport.
+- Headed mode khi debug; headless chỉ dùng sau khi test PASS hoặc trong CI.
+- `snapshot` để phân tích DOM (sinh locator); `screenshot` chỉ chụp khi fail hoặc milestone — không chụp tràn lan.
+- Locator lấy từ snapshot phải verify trên browser hiện tại trước khi đưa vào code. **KHÔNG đoán locator.**
+
+## Anti-Patterns (FORBIDDEN)
+
+| ❌ | ✅ |
+|---|---|
+| Đoán locator / copy từ code cũ không verify | Inspect DOM thực tế qua MCP, verify trước khi dùng |
+| `Thread.sleep`, fixed delay | `WebDriverWait` + `ExpectedConditions` (xem `selenium_rules.md`) |
+| Test data hardcoded (`test@email.com`, `user123`) | Sinh động: prefix + timestamp + random, traceable |
+| Locator dynamic class (`css-1a2b3c`), xpath tuyệt đối, auto-generated id | `id` / `data-testid` / `name` / CSS attribute / aria (xem `locator_strategy.md`) |
+| Assertion không có message | Mỗi assert kèm message mô tả expected behavior |
+| Test phụ thuộc thứ tự chạy / share state | Mỗi test setup/teardown riêng, độc lập |
+| Commit test FAIL hoặc còn debug log | Chỉ commit khi test PASS ổn định + cleanup |
+
+## Definition of Done
+
+Trước khi báo cáo task automation hoàn thành, kiểm tra toàn bộ:
+
+- [ ] **Code cleanup:** xoá `System.out.println` / debug log; xoá locator + import không dùng; không còn commented-out code.
+- [ ] **Wait strategy:** không còn `Thread.sleep` hardcoded — chỉ smart waits.
+- [ ] **Test data:** không hardcode email/username/ID — sinh random + traceable.
+- [ ] **POM:** locator khai báo trong Page class, không inline trong test; assertion trong test, không trong page.
+- [ ] **Stability:** test PASS ổn định **≥ 2 lần liên tiếp** (headed mode khi local).
+- [ ] **Assertion:** mỗi test có ≥ 1 assertion với message rõ ràng.
+- [ ] **Naming + structure:** file/class/method đúng convention; file đúng vị trí.
+- [ ] **Report:** tóm tắt PASS/FAIL/SKIP + lý do skip + known issues (nếu có).
+
 ## Safety Rules (CRITICAL)
 
 - Never execute destructive commands (`DROP TABLE`, `DELETE FROM` without `WHERE`, `rm -rf`, `Remove-Item -Recurse -Force`) without explicit user confirmation.
@@ -98,16 +137,36 @@ Mọi AI asset gom hết trong `.claude/`:
 
 **Reference docs (Claude chỉ đọc khi skill/command trigger):**
 - `.claude/rules/` — Coding rules (Selenium, locator strategy, automation best practices).
-- `.claude/workflows/` — Workflow guides chi tiết (bản gốc các quy trình).
 - `.claude/plans/` — 6-step automation plan.
 - `.claude/practices/` — Sample requirements và test cases.
 - `.claude/prompt_templates/` — Prompt mẫu để paste vào AI tool khác (Antigravity, Gemini).
 
+> **Lưu ý:** Toàn bộ workflow chi tiết đã được gộp vào `.claude/commands/` để gọi được bằng `/`. Không còn folder `workflows/`.
+
 Available slash commands:
 
+### Quick commands (sinh nhanh 1 lượt)
 | Command | Purpose |
 |---|---|
-| `/test-gen <requirement>` | Sinh manual test cases |
-| `/flaky-check <test-file>` | Phân tích flaky test + đề xuất fix |
-| `/locator-gen <element-desc>` | Sinh locator + healable fallback |
-| `/page-gen <page-name>` | Sinh Page Object class theo convention |
+| `/generate_testcases_from_requirements <requirement>` | Sinh manual test cases (quick mode) |
+| `/analyze_flaky_tests <test-file>` | Phân tích flaky test + đề xuất fix |
+| `/generate_locator <element-desc>` | Sinh locator + healable fallback |
+| `/page-gen <page-name>` | Sinh Page Object class theo convention repo |
+| `/generate_test_data <feature>` | Sinh test data 4 categories (positive/negative/boundary/edge) |
+
+### Requirements & Test Planning
+| Command | Purpose |
+|---|---|
+| `/generate_requirements_from_website <url>` | Sinh requirements doc từ website module |
+| `/analyze_requirement_document <doc-path>` | Phân tích requirement document (Jira/.doc) — không sinh TC |
+| `/generate_application_test_plan <url>` | Khám phá app + sinh test plan (PLAN/FULL mode) |
+| `/generate_cross_module_test_plan <feature>` | Sinh ma trận kết hợp cross-module (Pairwise) |
+
+### Automation Generation
+| Command | Purpose |
+|---|---|
+| `/generate_automation_framework` | Scaffold automation framework hoàn chỉnh |
+| `/generate_automation_from_testcases <tc-file>` | Convert manual test cases → automation scripts |
+| `/generate_automation_from_ui_flow <url+steps>` | Thực thi UI flow trên browser → sinh scripts |
+| `/generate_api_tests_from_swagger <url>` | Sinh API tests từ Swagger/OpenAPI spec |
+| `/generate_combinatorial_test_data <matrix-file>` | Sinh test data cho ma trận kết hợp (pipeline mode) |

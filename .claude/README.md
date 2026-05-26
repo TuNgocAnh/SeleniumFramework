@@ -29,4 +29,4 @@ Khi nhờ AI sinh/sửa code Selenium trong repo này, yêu cầu AI đọc trư
 1. `.claude/rules/selenium_rules.md`
 2. `.claude/rules/locator_strategy.md`
 3. Skill tương ứng trong `.claude/skills/`
-4. Workflow tương ứng trong `.claude/workflows/`
+4. Command tương ứng trong `.claude/commands/` (gọi bằng `/`)

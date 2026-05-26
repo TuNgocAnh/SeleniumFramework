@@ -4,6 +4,8 @@
 
 A web test automation framework built with **Java 21 + Maven + TestNG**, following the **Page Object Model (POM)** pattern. Supports cross-browser execution, parallel runs, data-driven testing (JSON/Excel), Selenium Grid, mobile emulation, Extent + Allure reporting, file logging, and encrypted credentials. Also ships with REST Assured for API testing and data setup, JaCoCo coverage, Spotless code style, and a Slack notifier for CI.
 
+
+
 > 📝 See [CHANGELOG.md](CHANGELOG.md) for recent changes.
 
 ---
@@ -231,7 +233,7 @@ Assertions.assertAll(); // REQUIRED at end of test to aggregate & raise accumula
 
 ## 9. MCP — Inspect real DOM from Claude Code
 
-The repo ships with a **Playwright MCP server** preconfigured in `.mcp.json`. Slash commands like `/locator-gen` can drive a real browser, capture the DOM accessibility tree, click/type — no more guessing locators.
+The repo ships with a **Playwright MCP server** preconfigured in `.mcp.json`. Slash commands like `/generate_locator` can drive a real browser, capture the DOM accessibility tree, click/type — no more guessing locators.
 
 **One-time setup:**
 
@@ -244,7 +246,7 @@ Then reload Claude Code (`Ctrl+Shift+P` → "Developer: Reload Window"). The `mc
 **Quick test:**
 
 ```
-/locator-gen "Add to cart" button on https://www.saucedemo.com
+/generate_locator "Add to cart" button on https://www.saucedemo.com
 ```
 
 The agent will navigate, inspect the real DOM, and return a locator + healable fallbacks based on actual attributes.
@@ -324,8 +326,6 @@ Workflow: `.github/workflows/ci.yml` — runs headless on `push` / `pull_request
 |---|---|---|
 | `CRED_KEY` | Using `enc:` passwords | Decrypt credentials |
 | `SLACK_WEBHOOK_URL` | Want Slack notifications on CI failure | Notifier step auto-skips if unset |
-
-**Dependabot** — `.github/dependabot.yml` opens weekly PRs to update Maven dependencies (grouped by selenium / testing / reporting), GitHub Actions, and Docker.
 
 ---
 

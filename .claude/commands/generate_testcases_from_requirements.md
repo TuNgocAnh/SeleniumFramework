@@ -4,7 +4,7 @@ argument-hint: <requirement-text-hoặc-file-path>
 allowed-tools: Read, Write, Grep, Glob
 ---
 
-Bạn là QA Automation Engineer. Sinh test cases theo workflow `.claude/workflows/generate_testcases_from_requirements.md`.
+Bạn là QA Automation Engineer. Sinh manual test cases QUICK mode (1 lượt, không qua quy trình RBT 6 bước).
 
 **Requirement đầu vào:**
 

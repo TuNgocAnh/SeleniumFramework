@@ -55,7 +55,7 @@ Typical prompts include:
 
 ## Workflow Routing
 
-When the user request matches a specific task, select the appropriate workflow file from `.claude/workflows/`.
+When the user request matches a specific task, select the appropriate command file from `.claude/commands/` (each command can be invoked by user with `/<command-name>`).
 
 ### Generate test cases from requirements
 
